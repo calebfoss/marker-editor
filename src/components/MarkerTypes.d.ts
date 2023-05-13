@@ -3,3 +3,20 @@ type MarkerElement = {
   attributes: { [key: string]: string }
   children: MarkerElement[]
 }
+
+type MarkerAttributes = {
+  [key: string]: string
+}
+
+type MarkerDocAttribute = {
+  name: string;
+  description: string
+}
+
+type MarkerDocElement = {
+  name: string;
+  description: string;
+  attributes: MarkerDocAttribute[]
+}
+
+type MarkerDocs = MarkerDocElement[]

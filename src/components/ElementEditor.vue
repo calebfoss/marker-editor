@@ -1,11 +1,19 @@
 <script setup lang="ts">
-import MarkerElements from './MarkerElements'
-const { element, remove } = defineProps<{ element: MarkerElement; remove?: () => void }>()
+import AttributeAdder from './AttributeAdder.vue'
+import AttributeEditor from './AttributeEditor.vue'
+import ChildAdder from './ChildAdder.vue'
 
-const removable = typeof remove !== 'undefined'
+const { element, remove, refreshPreview } = defineProps<{
+  element: MarkerElement
+  remove?: () => void
+  docs: MarkerDocs
+  refreshPreview: () => void
+}>()
 
 function addChild(e: Event) {
-  const form = e.target as HTMLFormElement
+  const el = e.target as HTMLInputElement | HTMLFormElement
+  const form = el instanceof HTMLFormElement ? el : el.form
+  if (form === null) return
   const formData = new FormData(form)
   const tag = formData.get('select-tag') as string
   const child: MarkerElement = {
@@ -14,31 +22,59 @@ function addChild(e: Event) {
     children: []
   }
   element.children.push(child)
+  refreshPreview()
 }
 
 function removeChild(index: number) {
   element.children = element.children.slice(0, index).concat(element.children.slice(index + 1))
+  refreshPreview()
+}
+
+function addAttribute(e: Event) {
+  const el = e.target as HTMLInputElement | HTMLFormElement
+  const form = el instanceof HTMLFormElement ? el : el.form
+  if (form === null) return
+  const formData = new FormData(form)
+  const name = formData.get('attribute-name')?.toString()
+  if (typeof name === 'undefined' || name.length === 0) return
+  const key = name === 'custom' ? formData.get('attribute-custom')?.toString() : name
+  if (typeof key === 'undefined') return
+  element.attributes[key] = ''
+  form.reset()
+}
+
+function removeAttribute(name: string) {
+  delete element.attributes[name]
+  refreshPreview()
 }
 </script>
 
 <template>
-  <section style="border: white solid 2px; padding: 20px; border-radius: 20px">
-    <div style="display: grid; grid-auto-flow: column">
+  <div class="element-editor" :tabindex="0" @keydown.delete.stop="remove">
+    <header>
       <h2>{{ element.tag }}</h2>
-      <button v-if="removable" @click="remove">x</button>
+    </header>
+    <div class="attributes-editor">
+      <AttributeEditor
+        v-for="(_, name) in element.attributes"
+        :name="name.toString()"
+        :all-attributes="element.attributes"
+        :remove="removeAttribute"
+        :refresh-preview="refreshPreview"
+      >
+      </AttributeEditor>
     </div>
+    <AttributeAdder :element="element" :add-attribute="addAttribute" :docs="docs"></AttributeAdder>
     <div style="margin-left: 40px">
       <ElementEditor
         v-for="(child, index) in element.children"
         :element="child"
         :remove="() => removeChild(index)"
-      ></ElementEditor>
-      <form @submit.prevent="addChild">
-        <select name="select-tag">
-          <option v-for="tag in MarkerElements" :value="tag" v-text="tag"></option>
-        </select>
-        <input type="submit" value="+" />
-      </form>
+        :docs="docs"
+        :refresh-preview="refreshPreview"
+      >
+      </ElementEditor>
     </div>
-  </section>
+    <ChildAdder :add-child="addChild" :docs="docs"></ChildAdder>
+  </div>
 </template>
