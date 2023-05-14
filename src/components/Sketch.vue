@@ -46,7 +46,7 @@ const rootElement: MarkerElement = reactive({
 
 const freezeRoot = (): MarkerElement => JSON.parse(JSON.stringify(rootElement))
 
-const iframeRef = ref<HTMLIFrameElement>()
+const iframeRef = ref<HTMLIFrameElement | null>(null)
 const appRef = ref<App | null>(null)
 
 function mountPreview() {
@@ -62,6 +62,7 @@ function refreshPreview() {
   if (appRef.value === null) return
   const oldApp = appRef.value
   oldApp.unmount()
+  appRef.value = null
   mountPreview()
 }
 </script>
@@ -72,6 +73,7 @@ function refreshPreview() {
       :element="rootElement"
       :docs="docs"
       :refresh-preview="refreshPreview"
+      class="root-element"
     ></ElementEditor>
   </section>
   <section id="preview">
