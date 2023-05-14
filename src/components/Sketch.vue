@@ -69,7 +69,7 @@ function refreshPreview() {
     ></ElementEditor>
   </section>
   <section id="preview">
-    <iframe src="../../preview.html" @load="mountPreview" ref="iframeRef"></iframe>
+    <iframe src="preview.html" @load="mountPreview" ref="iframeRef"></iframe>
     <button @click="refreshPreview">Reload</button>
   </section>
 </template>
