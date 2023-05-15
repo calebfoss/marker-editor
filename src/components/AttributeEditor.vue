@@ -5,10 +5,19 @@ const { name, allAttributes } = defineProps<{
   remove: (name: string) => void
   refreshPreview: () => void
 }>()
+
+function focusNewAttribute(e: any) {
+  e.el.children[1].focus()
+}
 </script>
 
 <template>
-  <div class="attribute-editor" :tabindex="0" @keydown.delete.stop="(e) => remove(name)">
+  <div
+    class="attribute-editor"
+    :tabindex="0"
+    @keydown.delete.stop="(e) => remove(name)"
+    @vue:mounted="focusNewAttribute"
+  >
     <label>{{ name }}</label>
     <input
       v-model="allAttributes[name]"
