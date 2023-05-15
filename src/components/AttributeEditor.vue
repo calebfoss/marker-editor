@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 const { name, allAttributes } = defineProps<{
   name: string
   allAttributes: MarkerAttributes
