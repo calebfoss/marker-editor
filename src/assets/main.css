@@ -81,6 +81,17 @@ body {
   outline: none;
 }
 
+.element-editor .description label {
+  display: block;
+}
+
+.element-editor .description textarea {
+  width: 100%;
+  background: #282828;
+  color: inherit;
+  resize: vertical;
+}
+
 input,
 select,
 button {

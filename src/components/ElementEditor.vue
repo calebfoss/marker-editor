@@ -19,7 +19,8 @@ function addChild(e: Event) {
   const child: MarkerElement = {
     tag,
     attributes: {},
-    children: []
+    children: [],
+    description: ''
   }
   element.children.push(child)
   refreshPreview()
@@ -65,6 +66,15 @@ function removeAttribute(name: string) {
       </AttributeEditor>
     </div>
     <AttributeAdder :element="element" :add-attribute="addAttribute" :docs="docs"></AttributeAdder>
+    <div class="description">
+      <label>Description</label>
+      <textarea
+        v-model="element.description"
+        @blur="refreshPreview"
+        @keydown.enter.stop.prevent="refreshPreview"
+        @keydown.backspace.stop
+      ></textarea>
+    </div>
     <div class="children">
       <ElementEditor
         v-for="(child, index) in element.children"

@@ -2,6 +2,7 @@ type MarkerElement = {
   tag: string
   attributes: { [key: string]: string }
   children: MarkerElement[]
+  description: string
 }
 
 type MarkerAttributes = {
@@ -9,13 +10,13 @@ type MarkerAttributes = {
 }
 
 type MarkerDocAttribute = {
-  name: string;
+  name: string
   description: string
 }
 
 type MarkerDocElement = {
-  name: string;
-  description: string;
+  name: string
+  description: string
   attributes: MarkerDocAttribute[]
 }
 

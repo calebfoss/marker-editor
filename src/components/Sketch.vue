@@ -39,9 +39,11 @@ const rootElement: MarkerElement = reactive({
     {
       tag: 'canvas',
       attributes: { background: '220', width: '400', height: '400' },
-      children: []
+      children: [],
+      description: ''
     }
-  ]
+  ],
+  description: ''
 })
 
 const freezeRoot = (): MarkerElement => JSON.parse(JSON.stringify(rootElement))
@@ -53,7 +55,8 @@ function mountPreview() {
   const iframe = iframeRef.value as HTMLIFrameElement
   const iframeDoc = iframe.contentDocument as Document
   const iframeBody = iframeDoc.body as HTMLBodyElement
-  const app = createApp(ElementPreview, { element: freezeRoot() })
+  const element = freezeRoot()
+  const app = createApp(ElementPreview, { element })
   appRef.value = app
   app.mount(iframeBody)
 }

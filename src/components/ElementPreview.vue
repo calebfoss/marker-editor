@@ -25,6 +25,7 @@ onBeforeUnmount(() => {
     v-bind="isCanvas ? { is: 'p-canvas' } : null"
     ref="elRef"
   >
+    {{ element.description }}
     <ElementPreview v-for="child in element.children" :element="child"></ElementPreview>
   </component>
 </template>
