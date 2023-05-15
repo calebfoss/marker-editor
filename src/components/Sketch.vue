@@ -4,33 +4,36 @@ import { createApp, type App, reactive, ref } from 'vue'
 import ElementEditor from './ElementEditor.vue'
 import ElementPreview from './SketchPreview.vue'
 
-const byName = (a: {name: string}, b: {name: string}) => {
-  if(a.name < b.name) return -1;
-  if(a.name === b.name) return 0;
-  return 1;
+const byName = (a: { name: string }, b: { name: string }) => {
+  if (a.name < b.name) return -1
+  if (a.name === b.name) return 0
+  return 1
 }
 
-const docs: MarkerDocs = manifest.modules.reduce(
-  (elements: MarkerDocElement[], mod) =>
-    elements.concat(
-      Object.values(mod.declarations)
-        .filter((dec) => dec.customElement)
-        .map(({ name, description, members }) => ({
-          name: name.toLowerCase(),
-          description,
-          attributes: members
-            .filter(
-              (member: { privacy?: string; kind?: string }) =>
-                member.privacy !== 'private' && member.kind === 'field'
-            )
-            .map(({ name, description }: { name: string; description?: string }) => ({
-              name,
-              description
-            })).sort(byName)
-        }))
-    ),
-  []
-).sort(byName);
+const docs: MarkerDocs = manifest.modules
+  .reduce(
+    (elements: MarkerDocElement[], mod) =>
+      elements.concat(
+        Object.values(mod.declarations)
+          .filter((dec) => dec.customElement)
+          .map(({ name, description, members }) => ({
+            name: name.toLowerCase(),
+            description,
+            attributes: members
+              .filter(
+                (member: { privacy?: string; kind?: string }) =>
+                  member.privacy !== 'private' && member.kind === 'field'
+              )
+              .map(({ name, description }: { name: string; description?: string }) => ({
+                name,
+                description
+              }))
+              .sort(byName)
+          }))
+      ),
+    []
+  )
+  .sort(byName)
 
 const rootElement: MarkerElement = reactive({
   tag: 'sketch',
