@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, onBeforeUnmount, ref } from 'vue'
 
 const { element } = defineProps<{ element: MarkerElement }>()
-const elRef = ref<(HTMLElement & { runCode: () => void }) | null>(null)
+const elRef = ref<(HTMLElement & { runCode: () => void; pInst: any }) | null>(null)
 const isCanvas = element.tag === 'canvas'
 
 onMounted(() => {
@@ -11,7 +11,11 @@ onMounted(() => {
 
   for (const [name, value] of Object.entries(element.attributes)) el.setAttribute(name, value)
 
-  if (element.tag === 'canvas') el.runCode()
+  if (isCanvas) el.runCode()
+})
+
+onBeforeUnmount(() => {
+  if (elRef.value !== null && isCanvas) elRef.value.pInst.remove()
 })
 </script>
 
