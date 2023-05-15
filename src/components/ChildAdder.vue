@@ -10,7 +10,7 @@ function toggle() {
 
 function handleSubmit(e: Event) {
   addChild(e)
-  toggle()
+  if (e.target instanceof HTMLElement) e.target.blur()
 }
 </script>
 <template>
