@@ -65,7 +65,7 @@ function removeAttribute(name: string) {
       </AttributeEditor>
     </div>
     <AttributeAdder :element="element" :add-attribute="addAttribute" :docs="docs"></AttributeAdder>
-    <div style="margin-left: 40px">
+    <div class="children">
       <ElementEditor
         v-for="(child, index) in element.children"
         :element="child"

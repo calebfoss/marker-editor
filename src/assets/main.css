@@ -6,7 +6,8 @@ body {
 }
 
 #app {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 50%;
   height: 100%;
 }
 
@@ -23,15 +24,20 @@ body {
 }
 
 #sketch-editor {
-  width: min(900px, 50%);
+  width: 100%;
   overflow-y: auto;
 }
 
 .element-editor {
-  min-width: 300px;
+  width: 400px;
   border: rgb(190, 190, 190) solid 4px;
+  background: var(--color-background);
   padding: 20px 2px 20px 20px;
-  border-radius: 20px
+  border-radius: 20px;
+}
+
+.root-element {
+  width: 100%;
 }
 
 .element-editor:focus {
@@ -41,6 +47,10 @@ body {
 .element-editor header {
   display: flex;
   justify-content: space-between;
+}
+
+.element-editor .children {
+  margin-left: 40px
 }
 
 .attributes-editor {
