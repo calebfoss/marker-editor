@@ -4,6 +4,12 @@ import { createApp, type App, reactive, ref } from 'vue'
 import ElementEditor from './ElementEditor.vue'
 import ElementPreview from './SketchPreview.vue'
 
+const byName = (a: {name: string}, b: {name: string}) => {
+  if(a.name < b.name) return -1;
+  if(a.name === b.name) return 0;
+  return 1;
+}
+
 const docs: MarkerDocs = manifest.modules.reduce(
   (elements: MarkerDocElement[], mod) =>
     elements.concat(
@@ -20,11 +26,11 @@ const docs: MarkerDocs = manifest.modules.reduce(
             .map(({ name, description }: { name: string; description?: string }) => ({
               name,
               description
-            }))
+            })).sort(byName)
         }))
     ),
   []
-)
+).sort(byName);
 
 const rootElement: MarkerElement = reactive({
   tag: 'sketch',
