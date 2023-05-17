@@ -53,9 +53,17 @@ const iframeRef = ref<HTMLIFrameElement | null>(null)
 const appRef = ref<App | null>(null)
 
 function mountPreview() {
-  const iframe = iframeRef.value as HTMLIFrameElement
-  const iframeDoc = iframe.contentDocument as Document
-  const iframeBody = iframeDoc.body as HTMLBodyElement
+  const iframe = iframeRef.value
+  if (iframe === null) {
+    console.error('Tried to mount preview window, but iframe ref was null')
+    return
+  }
+  const iframeDoc = iframe.contentDocument
+  if (iframeDoc === null) {
+    console.error("Tried to mount preview window, but iframe's contentDocument was null")
+    return
+  }
+  const iframeBody = iframeDoc.body
   const element = rootElement
   const app = createApp(ElementPreview, { element })
   appRef.value = app
