@@ -49,8 +49,6 @@ const rootElement: MarkerElement = reactive({
   description: ''
 })
 
-const freezeRoot = (): MarkerElement => JSON.parse(JSON.stringify(rootElement))
-
 const iframeRef = ref<HTMLIFrameElement | null>(null)
 const appRef = ref<App | null>(null)
 
@@ -58,7 +56,7 @@ function mountPreview() {
   const iframe = iframeRef.value as HTMLIFrameElement
   const iframeDoc = iframe.contentDocument as Document
   const iframeBody = iframeDoc.body as HTMLBodyElement
-  const element = freezeRoot()
+  const element = rootElement
   const app = createApp(ElementPreview, { element })
   appRef.value = app
   app.mount(iframeBody)
