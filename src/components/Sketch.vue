@@ -2,7 +2,7 @@
 import manifest from '../custom-elements.json'
 import { createApp, type App, reactive, ref } from 'vue'
 import ElementEditor from './ElementEditor.vue'
-import ElementPreview from './SketchPreview.vue'
+import ElementPreview from './ElementPreview.vue'
 
 const byName = (a: { name: string }, b: { name: string }) => {
   if (a.name < b.name) return -1
