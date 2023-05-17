@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import manifest from '../custom-elements.json'
 
 const { element, docs, addAttribute } = defineProps<{
   element: MarkerElement
