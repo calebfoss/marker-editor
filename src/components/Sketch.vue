@@ -10,6 +10,9 @@ const byName = (a: { name: string }, b: { name: string }) => {
   return 1
 }
 
+const toKebab = (str: string) =>
+  str.replace(/(?<=[a-z])[A-Z]|3/g, (char) => `-${char.toLowerCase()}`).toLowerCase()
+
 const docs: MarkerDocs = manifest.modules
   .reduce(
     (elements: MarkerDocElement[], mod) =>
@@ -17,7 +20,7 @@ const docs: MarkerDocs = manifest.modules
         Object.values(mod.declarations)
           .filter((dec) => dec.customElement)
           .map(({ name, description, members }) => ({
-            name: name.toLowerCase(),
+            name: name === 'WebGLCanvas' ? 'canvas-3d' : toKebab(name),
             description,
             attributes: members
               .filter(
