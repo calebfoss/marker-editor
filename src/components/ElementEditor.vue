@@ -10,12 +10,7 @@ const { element, remove, refreshPreview } = defineProps<{
   refreshPreview: () => void
 }>()
 
-function addChild(e: Event) {
-  const el = e.target as HTMLInputElement | HTMLFormElement
-  const form = el instanceof HTMLFormElement ? el : el.form
-  if (form === null) return
-  const formData = new FormData(form)
-  const tag = formData.get('select-tag') as string
+function addChild(tag: string) {
   const child: MarkerElement = {
     tag,
     attributes: {},
