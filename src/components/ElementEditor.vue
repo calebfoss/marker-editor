@@ -6,6 +6,8 @@ import ChildAdder from './ChildAdder.vue'
 const { element, remove, refreshPreview } = defineProps<{
   element: MarkerElement
   remove?: () => void
+  moveUp?: (e: KeyboardEvent) => void
+  moveDown?: (e: KeyboardEvent) => void
   docs: MarkerDocs
   refreshPreview: () => void
 }>()
@@ -23,6 +25,28 @@ function addChild(tag: string) {
 
 function removeChild(index: number) {
   element.children = element.children.slice(0, index).concat(element.children.slice(index + 1))
+  refreshPreview()
+}
+
+function moveChildUp(child: MarkerElement) {
+  const currentIndex = element.children.indexOf(child)
+  if (currentIndex <= 0) return
+  element.children = element.children
+    .slice(0, currentIndex - 1)
+    .concat(child)
+    .concat(element.children.slice(currentIndex - 1, currentIndex))
+    .concat(element.children.slice(currentIndex + 1))
+  refreshPreview()
+}
+
+function moveChildDown(child: MarkerElement) {
+  const currentIndex = element.children.indexOf(child)
+  if (currentIndex === -1 || currentIndex > element.children.length) return
+  element.children = element.children
+    .slice(0, currentIndex)
+    .concat(element.children.slice(currentIndex + 1, currentIndex + 2))
+    .concat(child)
+    .concat(element.children.slice(currentIndex + 2))
   refreshPreview()
 }
 
@@ -46,7 +70,13 @@ function removeAttribute(name: string) {
 </script>
 
 <template>
-  <div class="element-editor" :tabindex="0" @keydown.delete.stop="remove">
+  <div
+    class="element-editor"
+    :tabindex="0"
+    @keydown.delete.stop="remove"
+    @keydown.up.stop.prevent="moveUp"
+    @keydown.down.stop.prevent="moveDown"
+  >
     <header>
       <h2>{{ element.tag }}</h2>
     </header>
@@ -75,6 +105,8 @@ function removeAttribute(name: string) {
         v-for="(child, index) in element.children"
         :element="child"
         :remove="() => removeChild(index)"
+        :move-up="(e: KeyboardEvent) => moveChildUp(child)"
+        :move-down="(e: KeyboardEvent) => moveChildDown(child)"
         :docs="docs"
         :refresh-preview="refreshPreview"
       >
