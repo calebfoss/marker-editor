@@ -27,6 +27,10 @@ onBeforeUnmount(() => {
     ref="elRef"
   >
     {{ element.description }}
-    <ElementPreview v-for="child in element.children" :element="child"></ElementPreview>
+    <ElementPreview
+      v-for="child in element.children"
+      :element="child"
+      :key="child.key"
+    ></ElementPreview>
   </component>
 </template>

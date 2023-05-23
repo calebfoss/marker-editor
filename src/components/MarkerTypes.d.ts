@@ -1,5 +1,6 @@
 type MarkerElement = {
   tag: string
+  key: string
   attributes: { [key: string]: string }
   children: MarkerElement[]
   description: string

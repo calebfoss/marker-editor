@@ -3,18 +3,20 @@ import AttributeAdder from './AttributeAdder.vue'
 import AttributeEditor from './AttributeEditor.vue'
 import ChildAdder from './ChildAdder.vue'
 
-const { element, remove, refreshPreview } = defineProps<{
+const { element, remove, refreshPreview, generateKey } = defineProps<{
   element: MarkerElement
   remove?: () => void
   moveUp?: (e: KeyboardEvent) => void
   moveDown?: (e: KeyboardEvent) => void
   docs: MarkerDocs
   refreshPreview: () => void
+  generateKey: () => string
 }>()
 
 function addChild(tag: string) {
   const child: MarkerElement = {
     tag,
+    key: generateKey(),
     attributes: {},
     children: [],
     description: ''
@@ -109,6 +111,8 @@ function removeAttribute(name: string) {
         :move-down="(e: KeyboardEvent) => moveChildDown(child)"
         :docs="docs"
         :refresh-preview="refreshPreview"
+        :key="child.key"
+        :generate-key="generateKey"
       >
       </ElementEditor>
     </div>

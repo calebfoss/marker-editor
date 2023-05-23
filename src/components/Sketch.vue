@@ -13,6 +13,12 @@ const byName = (a: { name: string }, b: { name: string }) => {
 const toKebab = (str: string) =>
   str.replace(/(?<=[a-z])[A-Z]|3/g, (char) => `-${char.toLowerCase()}`).toLowerCase()
 
+const keyGenerator = (function* () {
+  let id = 0
+  while (true) yield `element_${id++}`
+})()
+const generateKey = () => keyGenerator.next().value
+
 const docs: MarkerDocs = manifest.modules
   .reduce(
     (elements: MarkerDocElement[], mod) =>
@@ -40,10 +46,12 @@ const docs: MarkerDocs = manifest.modules
 
 const rootElement: MarkerElement = reactive({
   tag: 'sketch',
+  key: generateKey(),
   attributes: {},
   children: [
     {
       tag: 'canvas',
+      key: generateKey(),
       attributes: { background: '220', width: '400', height: '400' },
       children: [],
       description: ''
@@ -88,6 +96,7 @@ function refreshPreview() {
       :element="rootElement"
       :docs="docs"
       :refresh-preview="refreshPreview"
+      :generate-key="generateKey"
       class="root-element"
     ></ElementEditor>
   </section>
