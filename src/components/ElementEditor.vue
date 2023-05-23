@@ -80,7 +80,7 @@ function removeAttribute(name: string) {
     @keydown.down.stop.prevent="moveDown"
   >
     <header>
-      <h2>{{ element.tag }}</h2>
+      <h2>{{ element.tag.slice(2) }}</h2>
     </header>
     <div class="attributes-editor">
       <AttributeEditor

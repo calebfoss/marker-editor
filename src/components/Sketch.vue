@@ -23,34 +23,39 @@ const docs: MarkerDocs = manifest.modules
   .reduce(
     (elements: MarkerDocElement[], mod) =>
       elements.concat(
-        Object.values(mod.declarations)
-          .filter((dec) => dec.customElement)
-          .map(({ name, description, members }) => ({
-            name: name === 'WebGLCanvas' ? 'canvas-3d' : toKebab(name),
-            description,
-            attributes: members
-              .filter(
-                (member: { privacy?: string; kind?: string }) =>
-                  member.privacy !== 'private' && member.kind === 'field'
-              )
-              .map(({ name, description }: { name: string; description?: string }) => ({
-                name,
-                description
-              }))
-              .sort(byName)
-          }))
+        Object.values(mod.exports)
+          .filter((exp) => exp.kind === 'custom-element-definition')
+          .map((elementExport) => {
+            const { description, members } = Object.values(mod.declarations).find(
+              (dec) => dec.name === elementExport.declaration.name
+            )
+            return {
+              name: elementExport.name,
+              description,
+              attributes: members
+                .filter(
+                  (member: { privacy?: string; kind?: string }) =>
+                    member.privacy !== 'private' && member.kind === 'field'
+                )
+                .map(({ name, description }: { name: string; description?: string }) => ({
+                  name,
+                  description
+                }))
+                .sort(byName)
+            }
+          })
       ),
     []
   )
   .sort(byName)
 
 const rootElement: MarkerElement = reactive({
-  tag: 'sketch',
+  tag: 'p-sketch',
   key: generateKey(),
   attributes: {},
   children: [
     {
-      tag: 'canvas',
+      tag: 'p-canvas',
       key: generateKey(),
       attributes: { background: '220', width: '400', height: '400' },
       children: [],

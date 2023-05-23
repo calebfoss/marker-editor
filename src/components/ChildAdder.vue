@@ -29,7 +29,7 @@ function optionClicked(e: Event) {
       <option
         v-for="docElement in docs"
         :value="docElement.name"
-        v-text="docElement.name"
+        v-text="docElement.name.slice(2)"
         @click.prevent="optionClicked"
       ></option>
     </select>

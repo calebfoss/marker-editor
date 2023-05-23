@@ -3,8 +3,7 @@ import { onMounted, onBeforeUnmount, ref } from 'vue'
 
 const { element } = defineProps<{ element: MarkerElement }>()
 const elRef = ref<(HTMLElement & { runCode: () => void; pInst: any }) | null>(null)
-const isCanvas3D = element.tag === 'canvas-3d'
-const isCanvas = isCanvas3D || element.tag === 'canvas'
+const isCanvas = element.tag === 'p-canvas-3d' || element.tag === 'p-canvas'
 
 onMounted(() => {
   if (elRef.value === null) return
@@ -22,8 +21,8 @@ onBeforeUnmount(() => {
 
 <template>
   <component
-    :is="isCanvas ? 'canvas' : `p-${element.tag}`"
-    v-bind="isCanvas ? { is: isCanvas3D ? 'p-canvas-3d' : 'p-canvas' } : null"
+    :is="isCanvas ? 'canvas' : element.tag"
+    v-bind="isCanvas ? { is: element.tag } : null"
     ref="elRef"
   >
     {{ element.description }}
