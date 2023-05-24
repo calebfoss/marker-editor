@@ -10,9 +10,6 @@ const byName = (a: { name: string }, b: { name: string }) => {
   return 1
 }
 
-const toKebab = (str: string) =>
-  str.replace(/(?<=[a-z])[A-Z]|3/g, (char) => `-${char.toLowerCase()}`).toLowerCase()
-
 const keyGenerator = (function* () {
   let id = 0
   while (true) yield `element_${id++}`
