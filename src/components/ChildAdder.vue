@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-const { addChild } = defineProps<{ addChild: (tag: string) => void; docs: MarkerDocs }>()
+import { computed, ref } from 'vue'
+const { addChild, canvas, docs } = defineProps<{
+  addChild: (tag: string) => void
+  docs: MarkerDocs
+  canvas?: MarkerElement
+}>()
 
 const adding = ref(false)
 
@@ -21,17 +25,34 @@ function optionClicked(e: Event) {
   addChild(option.value)
   toggleSelect()
 }
+
+const primitives3d = ['plane', 'box', 'sphere', 'cylinder', 'cone', 'ellipsoid', 'torus', 'model']
+const filteredOptions = computed(() =>
+  docs.filter((docElement) => {
+    if (typeof canvas === 'undefined') return true
+    if (docElement.name.slice(2, 9) === `canvas`) return false
+    const is3d =
+      docElement.name.slice(-2) === `3d` || primitives3d.includes(docElement.name.slice(2))
+    if (canvas.tag.slice(-2) === '3d') return is3d
+    return !is3d
+  })
+)
 </script>
 <template>
   <button v-show="!adding" @click="toggleSelect">Add child</button>
   <form v-show="adding" @submit.prevent="onSubmit">
     <select name="select-tag">
       <option
-        v-for="docElement in docs"
+        v-for="docElement in filteredOptions"
         :value="docElement.name"
-        v-text="docElement.name.slice(2)"
         @click.prevent="optionClicked"
-      ></option>
+      >
+        {{
+          docElement.name.slice(-2) === `3d`
+            ? docElement.name.slice(2, -3)
+            : docElement.name.slice(2)
+        }}
+      </option>
     </select>
     <input type="submit" value="+" />
   </form>

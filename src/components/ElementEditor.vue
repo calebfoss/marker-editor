@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import AttributeAdder from './AttributeAdder.vue'
 import AttributeEditor from './AttributeEditor.vue'
 import ChildAdder from './ChildAdder.vue'
@@ -12,6 +13,7 @@ const { element, remove, refreshPreview, generateKey, parentElement } = definePr
   refreshPreview: () => void
   generateKey: () => string
   parentElement?: MarkerElement
+  canvas?: MarkerElement
 }>()
 
 function addChild(tag: string) {
@@ -91,6 +93,14 @@ function removeAttribute(name: string) {
   delete element.attributes[name]
   refreshPreview()
 }
+const isCanvas3D = ref(element.tag === 'p-canvas-3d')
+const isCanvas = computed(() => isCanvas3D.value || element.tag === 'p-canvas')
+
+function updateCanvasTag() {
+  const is3D = isCanvas3D.value
+  element.tag = is3D ? 'p-canvas-3d' : 'p-canvas'
+  refreshPreview()
+}
 </script>
 
 <template>
@@ -101,9 +111,15 @@ function removeAttribute(name: string) {
     @keydown.up.stop.prevent="moveUp"
     @keydown.down.stop.prevent="moveDown"
   >
-    <header>
-      <h2>{{ element.tag.slice(2) }}</h2>
-    </header>
+    <h2>{{ element.tag.slice(-2) === `3d` ? element.tag.slice(2, -3) : element.tag.slice(2) }}</h2>
+    <div v-if="isCanvas">
+      <input
+        style="margin-right: 10px"
+        type="checkbox"
+        v-model="isCanvas3D"
+        @change="updateCanvasTag"
+      /><label>3D</label>
+    </div>
     <div class="attributes-editor">
       <AttributeEditor
         v-for="(_, name) in element.attributes"
@@ -136,10 +152,15 @@ function removeAttribute(name: string) {
         :key="child.key"
         :generate-key="generateKey"
         :parent-element="element"
+        :canvas="isCanvas ? element : canvas"
         @keydown.left.stop.prevent="() => childToSibling(index)"
       >
       </ElementEditor>
     </div>
-    <ChildAdder :add-child="addChild" :docs="docs"></ChildAdder>
+    <ChildAdder
+      :add-child="addChild"
+      :docs="docs"
+      :canvas="isCanvas ? element : canvas"
+    ></ChildAdder>
   </div>
 </template>
