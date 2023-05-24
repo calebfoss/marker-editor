@@ -52,6 +52,13 @@ function moveChildDown(child: MarkerElement) {
   refreshPreview()
 }
 
+function parentChildUp(child: MarkerElement) {
+  const currentIndex = element.children.indexOf(child)
+  if (currentIndex <= 0) return
+  removeChild(currentIndex)
+  element.children[currentIndex - 1].children.push(child)
+}
+
 function addAttribute(e: Event) {
   const el = e.target as HTMLInputElement | HTMLFormElement
   const form = el instanceof HTMLFormElement ? el : el.form
@@ -107,7 +114,7 @@ function removeAttribute(name: string) {
         v-for="(child, index) in element.children"
         :element="child"
         :remove="() => removeChild(index)"
-        :move-up="(e: KeyboardEvent) => moveChildUp(child)"
+        :move-up="(e: KeyboardEvent) => e.shiftKey ? parentChildUp(child) : moveChildUp(child)"
         :move-down="(e: KeyboardEvent) => moveChildDown(child)"
         :docs="docs"
         :refresh-preview="refreshPreview"
