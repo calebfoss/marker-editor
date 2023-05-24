@@ -3,7 +3,7 @@ import AttributeAdder from './AttributeAdder.vue'
 import AttributeEditor from './AttributeEditor.vue'
 import ChildAdder from './ChildAdder.vue'
 
-const { element, remove, refreshPreview, generateKey } = defineProps<{
+const { element, remove, refreshPreview, generateKey, parentElement } = defineProps<{
   element: MarkerElement
   remove?: () => void
   moveUp?: (e: KeyboardEvent) => void
@@ -11,6 +11,7 @@ const { element, remove, refreshPreview, generateKey } = defineProps<{
   docs: MarkerDocs
   refreshPreview: () => void
   generateKey: () => string
+  parentElement?: MarkerElement
 }>()
 
 function addChild(tag: string) {
@@ -23,6 +24,13 @@ function addChild(tag: string) {
   }
   element.children.push(child)
   refreshPreview()
+}
+
+function childToSibling(index: number) {
+  if (typeof parentElement === 'undefined') return
+  const child = element.children[index]
+  removeChild(index)
+  parentElement.children.push(child)
 }
 
 function removeChild(index: number) {
@@ -127,6 +135,8 @@ function removeAttribute(name: string) {
         :refresh-preview="refreshPreview"
         :key="child.key"
         :generate-key="generateKey"
+        :parent-element="element"
+        @keydown.left.stop.prevent="() => childToSibling(index)"
       >
       </ElementEditor>
     </div>
