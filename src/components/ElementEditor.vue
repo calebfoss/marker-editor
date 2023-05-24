@@ -59,6 +59,13 @@ function parentChildUp(child: MarkerElement) {
   element.children[currentIndex - 1].children.push(child)
 }
 
+function parentChildDown(child: MarkerElement) {
+  const currentIndex = element.children.indexOf(child)
+  if (currentIndex === -1 || currentIndex === element.children.length - 1) return
+  element.children[currentIndex + 1].children.push(child)
+  removeChild(currentIndex)
+}
+
 function addAttribute(e: Event) {
   const el = e.target as HTMLInputElement | HTMLFormElement
   const form = el instanceof HTMLFormElement ? el : el.form
@@ -115,7 +122,7 @@ function removeAttribute(name: string) {
         :element="child"
         :remove="() => removeChild(index)"
         :move-up="(e: KeyboardEvent) => e.shiftKey ? parentChildUp(child) : moveChildUp(child)"
-        :move-down="(e: KeyboardEvent) => moveChildDown(child)"
+        :move-down="(e: KeyboardEvent) => e.shiftKey ? parentChildDown(child) : moveChildDown(child)"
         :docs="docs"
         :refresh-preview="refreshPreview"
         :key="child.key"
