@@ -30,40 +30,40 @@ function removeChild(index: number) {
   refreshPreview()
 }
 
-function moveChildUp(child: MarkerElement) {
-  const currentIndex = element.children.indexOf(child)
-  if (currentIndex <= 0) return
+function moveChildUp(index: number) {
+  if (index <= 0) return
+  const child = element.children[index]
   element.children = element.children
-    .slice(0, currentIndex - 1)
+    .slice(0, index - 1)
     .concat(child)
-    .concat(element.children.slice(currentIndex - 1, currentIndex))
-    .concat(element.children.slice(currentIndex + 1))
+    .concat(element.children.slice(index - 1, index))
+    .concat(element.children.slice(index + 1))
   refreshPreview()
 }
 
-function moveChildDown(child: MarkerElement) {
-  const currentIndex = element.children.indexOf(child)
-  if (currentIndex === -1 || currentIndex > element.children.length) return
+function moveChildDown(index: number) {
+  if (index === -1 || index > element.children.length) return
+  const child = element.children[index]
   element.children = element.children
-    .slice(0, currentIndex)
-    .concat(element.children.slice(currentIndex + 1, currentIndex + 2))
+    .slice(0, index)
+    .concat(element.children.slice(index + 1, index + 2))
     .concat(child)
-    .concat(element.children.slice(currentIndex + 2))
+    .concat(element.children.slice(index + 2))
   refreshPreview()
 }
 
-function parentChildUp(child: MarkerElement) {
-  const currentIndex = element.children.indexOf(child)
-  if (currentIndex <= 0) return
-  removeChild(currentIndex)
-  element.children[currentIndex - 1].children.push(child)
+function parentChildUp(index: number) {
+  if (index <= 0) return
+  const child = element.children[index]
+  removeChild(index)
+  element.children[index - 1].children.push(child)
 }
 
-function parentChildDown(child: MarkerElement) {
-  const currentIndex = element.children.indexOf(child)
-  if (currentIndex === -1 || currentIndex === element.children.length - 1) return
-  element.children[currentIndex + 1].children.push(child)
-  removeChild(currentIndex)
+function parentChildDown(index: number) {
+  if (index === -1 || index === element.children.length - 1) return
+  const child = element.children[index]
+  removeChild(index)
+  element.children[index].children.push(child)
 }
 
 function addAttribute(e: Event) {
@@ -121,8 +121,8 @@ function removeAttribute(name: string) {
         v-for="(child, index) in element.children"
         :element="child"
         :remove="() => removeChild(index)"
-        :move-up="(e: KeyboardEvent) => e.shiftKey ? parentChildUp(child) : moveChildUp(child)"
-        :move-down="(e: KeyboardEvent) => e.shiftKey ? parentChildDown(child) : moveChildDown(child)"
+        :move-up="(e: KeyboardEvent) => e.shiftKey ? parentChildUp(index) : moveChildUp(index)"
+        :move-down="(e: KeyboardEvent) => e.shiftKey ? parentChildDown(index) : moveChildDown(index)"
         :docs="docs"
         :refresh-preview="refreshPreview"
         :key="child.key"
