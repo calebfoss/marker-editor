@@ -4,11 +4,8 @@ import AttributeAdder from './AttributeAdder.vue'
 import AttributeEditor from './AttributeEditor.vue'
 import ChildAdder from './ChildAdder.vue'
 
-const { element, remove, refreshPreview, generateKey, parentElement } = defineProps<{
+const { element, refreshPreview, generateKey, parentElement } = defineProps<{
   element: MarkerElement
-  remove?: () => void
-  moveUp?: (e: KeyboardEvent) => void
-  moveDown?: (e: KeyboardEvent) => void
   docs: MarkerDocs
   refreshPreview: () => void
   generateKey: () => string
@@ -104,13 +101,7 @@ function updateCanvasTag() {
 </script>
 
 <template>
-  <div
-    class="element-editor"
-    :tabindex="0"
-    @keydown.delete.stop="remove"
-    @keydown.up.stop.prevent="moveUp"
-    @keydown.down.stop.prevent="moveDown"
-  >
+  <div class="element-editor" :tabindex="0">
     <h2>{{ element.tag.slice(-2) === `3d` ? element.tag.slice(2, -3) : element.tag.slice(2) }}</h2>
     <div v-if="isCanvas">
       <input
@@ -144,15 +135,15 @@ function updateCanvasTag() {
       <ElementEditor
         v-for="(child, index) in element.children"
         :element="child"
-        :remove="() => removeChild(index)"
-        :move-up="(e: KeyboardEvent) => e.shiftKey ? parentChildUp(index) : moveChildUp(index)"
-        :move-down="(e: KeyboardEvent) => e.shiftKey ? parentChildDown(index) : moveChildDown(index)"
         :docs="docs"
         :refresh-preview="refreshPreview"
         :key="child.key"
         :generate-key="generateKey"
         :parent-element="element"
         :canvas="isCanvas ? element : canvas"
+        @keydown.delete.stop="() => removeChild(index)"
+        @keydown.up.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentChildUp(index) : moveChildUp(index)"
+        @keydown.down.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentChildDown(index) : moveChildDown(index)"
         @keydown.left.stop.prevent="() => childToSibling(index)"
       >
       </ElementEditor>
