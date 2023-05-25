@@ -5251,6 +5251,152 @@
             },
             {
               "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "#anchor",
               "privacy": "private",
               "default": "new p5.Vector()",
@@ -6443,8 +6589,16 @@
               "module": "src/elements/2d_shape_elements.js"
             },
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             }
           ],
           "superclass": {
@@ -6635,6 +6789,81 @@
               "inheritedFrom": {
                 "name": "addStroke",
                 "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
               }
             },
             {
@@ -7851,8 +8080,16 @@
               "module": "/src/properties/shape_props"
             },
             {
-              "name": "addFillStroke",
+              "name": "addFill",
               "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             },
             {
               "name": "addEllipse2DCollisionProps",
@@ -7980,6 +8217,152 @@
               "inheritedFrom": {
                 "name": "addDiameter",
                 "module": "src/elements/2d_shape_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
               }
             },
             {
@@ -9196,8 +9579,16 @@
               "module": "src/elements/2d_shape_elements.js"
             },
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             },
             {
               "name": "addCircle2DCollisionProps",
@@ -9328,6 +9719,127 @@
               },
               "inheritedFrom": {
                 "name": "addXY2",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
                 "module": "src/properties/shape_props.js"
               }
             },
@@ -10541,8 +11053,12 @@
               "module": "/src/properties/shape_props"
             },
             {
-              "name": "add2DStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             },
             {
               "name": "addLine2DCollisionProps",
@@ -10623,6 +11139,127 @@
               },
               "inheritedFrom": {
                 "name": "addXY",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
                 "module": "src/properties/shape_props.js"
               }
             },
@@ -11836,8 +12473,12 @@
               "module": "/src/properties/shape_props"
             },
             {
-              "name": "add2DStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             },
             {
               "name": "addPointCollisionProps",
@@ -12068,6 +12709,152 @@
               },
               "inheritedFrom": {
                 "name": "addXY4",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
                 "module": "src/properties/shape_props.js"
               }
             },
@@ -13297,8 +14084,16 @@
               "module": "/src/properties/shape_props"
             },
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             },
             {
               "name": "addQuad2DCollisionProps",
@@ -13555,6 +14350,152 @@
               "inheritedFrom": {
                 "name": "addCornerRadius",
                 "module": "src/elements/2d_shape_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
               }
             },
             {
@@ -14755,8 +15696,16 @@
               "module": "src/elements/2d_shape_elements.js"
             },
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             }
           ],
           "superclass": {
@@ -14984,6 +15933,152 @@
               "inheritedFrom": {
                 "name": "addCornerRadius",
                 "module": "src/elements/2d_shape_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
               }
             },
             {
@@ -16180,8 +17275,16 @@
               "module": "src/elements/2d_shape_elements.js"
             },
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             }
           ],
           "superclass": {
@@ -16374,6 +17477,152 @@
               },
               "inheritedFrom": {
                 "name": "addXY3",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
                 "module": "src/properties/shape_props.js"
               }
             },
@@ -17567,8 +18816,16 @@
               "module": "/src/properties/shape_props"
             },
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             }
           ],
           "superclass": {
@@ -17795,6 +19052,152 @@
               },
               "inheritedFrom": {
                 "name": "addXY4",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
                 "module": "src/properties/shape_props.js"
               }
             },
@@ -18784,8 +20187,16 @@
               "module": "/src/properties/shape_props"
             },
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             },
             {
               "name": "addBezierMethods",
@@ -19041,6 +20452,152 @@
               },
               "inheritedFrom": {
                 "name": "addCurveTightness",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
                 "module": "src/properties/shape_props.js"
               }
             },
@@ -20288,8 +21845,16 @@
               "module": "/src/properties/shape_props"
             },
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             },
             {
               "name": "addCurveMethods",
@@ -20324,6 +21889,152 @@
             {
               "kind": "method",
               "name": "endRender"
+            },
+            {
+              "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
             },
             {
               "kind": "field",
@@ -21259,8 +22970,16 @@
           ],
           "mixins": [
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             }
           ],
           "superclass": {
@@ -21336,8 +23055,16 @@
               "module": "src/elements/2d_shape_elements.js"
             },
             {
-              "name": "add2DFillStroke",
-              "module": "src/elements/2d_shape_elements.js"
+              "name": "addFill",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "addStroke",
+              "module": "/src/properties/color_props"
+            },
+            {
+              "name": "add2DStrokeStyling",
+              "module": "/src/properties/shape_props"
             },
             {
               "name": "addShape2DCollisionProps",
@@ -21423,6 +23150,152 @@
               "inheritedFrom": {
                 "name": "addShapeElementProps",
                 "module": "src/elements/2d_shape_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#fill",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#fff\"",
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "fill",
+              "description": "Sets the color used to fill shapes. This may be a\n<a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object or\na comma separated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addFill",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"#000\"",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_weight",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke",
+              "description": "Sets the color used to draw lines and borders around shapes. This color\nis either a <a href=\"#/p5.Color\">p5.Color</a> object or a comma\nseparated list of values to pass into\n<a href=\"https://p5js.org/reference/#/p5/color\">color()</a>.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_weight",
+              "description": "Sets the width of the stroke used for lines, points and the border around\nshapes. All widths are set in units of pixels.\n\nNote that it is affected by any transformation or scaling that has\nbeen applied previously.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addStroke",
+                "module": "src/properties/color_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#smooth",
+              "privacy": "private",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_cap",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"round\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#stroke_join",
+              "privacy": "private",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"miter\"",
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "smooth",
+              "description": "smooth=\"true\" draws all geometry with smooth (anti-aliased) edges. smooth=\"true\" will also\nimprove image quality of resized images. smooth is true by\ndefault on a 2D canvas. smooth=\"false\" can be used to disable smoothing of geometry,\nimages, and fonts.",
+              "type": {
+                "text": "boolean"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_cap",
+              "description": "Sets the style for rendering line endings. These ends are either rounded,\nsquared or extended, each of which specified with the corresponding\nparameters: ROUND, SQUARE and PROJECT. The default cap is ROUND.\n\nThe value on this property must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "ROUND|SQUARE|PROJECT"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "stroke_join",
+              "description": "Sets the style of the joints which connect line segments. These joints\nare either mitered, beveled or rounded and specified with the\ncorresponding parameters MITER, BEVEL and ROUND. The default joint is\nMITER.\n\nThe parameter to this method must be written in ALL CAPS because they are\npredefined as constants in ALL CAPS.",
+              "type": {
+                "text": "MITER|BEVEL|ROUND"
+              },
+              "inheritedFrom": {
+                "name": "add2DStrokeStyling",
+                "module": "src/properties/shape_props.js"
               }
             },
             {
@@ -75264,6 +77137,952 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/methods/3d_methods.js",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "addWebGLMethods",
+          "members": [
+            {
+              "kind": "method",
+              "name": "create_camera",
+              "description": "Creates a new <a href=\"#/p5.Camera\">p5.Camera</a> object and sets it\nas the current (active) camera.\n\nThe new camera is initialized with a default position\n(see camera property)\nand a default perspective projection\n(see <a href=\"#/p5.Camera/perspective\">perspective()</a>).\nIts properties can be controlled with the <a href=\"#/p5.Camera\">p5.Camera</a>\nmethods.\n\nNote: Every 3D sketch starts with a default camera initialized.\nThis camera can be controlled with the canvas properties\ncamera,\nperspective, ortho,\nand frustum if it is the only camera\nin the scene.",
+              "return": {
+                "type": {
+                  "text": "p5.Camera"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "create_shader",
+              "description": "Creates a new <a href=\"#/p5.Shader\">p5.Shader</a> object\nfrom the provided vertex and fragment shader code.\n\nNote, shaders can only be used in WEBGL mode.",
+              "parameters": [
+                {
+                  "description": "source code for the vertex shader",
+                  "name": "vertSrc",
+                  "type": {
+                    "text": "String"
+                  }
+                },
+                {
+                  "description": "source code for the fragment shader",
+                  "name": "fragSrc",
+                  "type": {
+                    "text": "String"
+                  }
+                }
+              ],
+              "return": {
+                "type": {
+                  "text": "p5.Shader"
+                }
+              }
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "addWebGLMethods",
+          "declaration": {
+            "name": "addWebGLMethods",
+            "module": "src/methods/3d_methods.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/methods/canvas_methods.js",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "addCanvasMethods",
+          "members": [
+            {
+              "kind": "method",
+              "name": "attributeInherited",
+              "parameters": [
+                {
+                  "name": "attributeName"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "runCode"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "addCanvasMethods",
+          "declaration": {
+            "name": "addCanvasMethods",
+            "module": "src/methods/canvas_methods.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/methods/collide_methods.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "{ collider_type }",
+          "default": "Collide"
+        },
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "addCollide",
+          "members": [
+            {
+              "kind": "field",
+              "name": "collide",
+              "default": "new Collide(this)",
+              "description": "The collide object provides collision detection methods for different\nshapes. These methods are adapted from\n<a href=\"https://github.com/bmoren\">Ben Moren's</a>\n<a href=\"https://github.com/bmoren/p5.collide2D\">Collide2D library</a>.\nThese links are written how these methods would be called in Marker, and\nthey link to the documentation for their corresponding Collide2D\nfunction, which has the same parameters:\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointpoint\">\ncollide.point_point()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointcircle\">\ncollide.point_circle()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointellipse\">\ncollide.point_ellipse()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointrect\">\ncollide.point_rect()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointline\">\ncollide.point_line()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointarc\">\ncollide.point_arc()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#colliderectrect\">\ncollide.rect_rect()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidecirclecircle\">\ncollide.circle_circle()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#colliderectcircle\">\ncollide.rect_circle()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidelineline\">\ncollide.line_line()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidelinecircle\">\ncollide.line_circle()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidelinerect\">\ncollide.line_rect()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointpoly\">\ncollide.point_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidecirclepoly\">\ncollide.circle_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#colliderectpoly\">\ncollide.rect_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidelinepoly\">\ncollide.line_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepolypoly\">\ncollide.poly_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointtriangle\">\ncollide.point_triangle()</a>"
+            },
+            {
+              "kind": "method",
+              "name": "colliding_with",
+              "parameters": [
+                {
+                  "name": "el",
+                  "description": "other element to check",
+                  "type": {
+                    "text": "P5Element"
+                  }
+                }
+              ],
+              "description": "Checks if this element is colliding with the provided other element.",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "{ collider_type }",
+          "declaration": {
+            "name": "{ collider_type }",
+            "module": "src/methods/collide_methods.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "addCollide",
+          "declaration": {
+            "name": "addCollide",
+            "module": "src/methods/collide_methods.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/methods/color_methods.js",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "addColorMethods",
+          "members": [
+            {
+              "kind": "method",
+              "name": "lerp_color"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "addColorMethods",
+          "declaration": {
+            "name": "addColorMethods",
+            "module": "src/methods/color_methods.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/methods/data_methods.js",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "addDataMethods",
+          "members": [
+            {
+              "kind": "method",
+              "name": "create_string_dict",
+              "description": "\nCreates a new instance of p5.StringDict using the key-value pair\nor the object you provide.",
+              "parameters": [
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "String"
+                  }
+                },
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "String"
+                  }
+                },
+                {
+                  "description": "key-value pairs",
+                  "name": "object",
+                  "type": {
+                    "text": "Object"
+                  }
+                }
+              ],
+              "return": {
+                "type": {
+                  "text": "p5.StringDict"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "create_number_dict",
+              "description": "\nCreates a new instance of <a href=\"#/p5.NumberDict\">p5.NumberDict</a> using the key-value pair\nor object you provide.",
+              "parameters": [
+                {
+                  "name": "key",
+                  "type": {
+                    "text": "Number"
+                  }
+                },
+                {
+                  "name": "value",
+                  "type": {
+                    "text": "Number"
+                  }
+                },
+                {
+                  "description": "key-value pairs",
+                  "name": "object",
+                  "type": {
+                    "text": "Object"
+                  }
+                }
+              ],
+              "return": {
+                "type": {
+                  "text": "p5.NumberDict"
+                }
+              }
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "addDataMethods",
+          "declaration": {
+            "name": "addDataMethods",
+            "module": "src/methods/data_methods.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/methods/math_methods.js",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "addMathMethods",
+          "members": [
+            {
+              "kind": "method",
+              "name": "vector",
+              "description": "Creates a new <a href=\"#/p5.Vector\">p5.Vector</a> (the datatype for storing vectors). This provides a\ntwo or three-dimensional vector, specifically a Euclidean (also known as\ngeometric) vector. A vector is an entity that has both magnitude and\ndirection.",
+              "parameters": [
+                {
+                  "description": "x component of the vector",
+                  "name": "x",
+                  "optional": true,
+                  "type": {
+                    "text": "Number"
+                  }
+                },
+                {
+                  "description": "y component of the vector",
+                  "name": "y",
+                  "optional": true,
+                  "type": {
+                    "text": "Number"
+                  }
+                },
+                {
+                  "description": "z component of the vector",
+                  "name": "z",
+                  "optional": true,
+                  "type": {
+                    "text": "Number"
+                  }
+                }
+              ],
+              "return": {
+                "type": {
+                  "text": "p5.Vector"
+                }
+              }
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "addMathMethods",
+          "declaration": {
+            "name": "addMathMethods",
+            "module": "src/methods/math_methods.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/methods/shape_methods.js",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "addBezierMethods",
+          "members": [
+            {
+              "kind": "method",
+              "name": "point_at",
+              "parameters": [
+                {
+                  "name": "t",
+                  "description": "value between 0 and 1",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Evaluates the position on the bezier at t. t is the\nresultant point which is given between 0 (start of Bezier) and 1 (end of Bezier).",
+              "return": {
+                "type": {
+                  "text": "p5.Vector"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "tangent_at",
+              "parameters": [
+                {
+                  "name": "t",
+                  "description": "value between 0 and 1",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Evaluates the tangent to the Bezier at position t.\nt is between 0 (start of Bezier) and 1 (end of Bezier).",
+              "return": {
+                "type": {
+                  "text": "p5.Vector"
+                }
+              }
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        },
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "addCurveMethods",
+          "members": [
+            {
+              "kind": "method",
+              "name": "point_at",
+              "parameters": [
+                {
+                  "name": "t",
+                  "description": "value between 0 and 1",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Evaluates the position on the curve at t.\nt is between 0 (start of curve) and 1 (end of curve).",
+              "return": {
+                "type": {
+                  "text": "p5.Vector"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "tangent_at",
+              "parameters": [
+                {
+                  "name": "t",
+                  "description": "value between 0 and 1",
+                  "type": {
+                    "text": "number"
+                  }
+                }
+              ],
+              "description": "Evaluates the tangent to the curve at t.\nt is between 0 (start of curve) and 1 (end of curve).",
+              "return": {
+                "type": {
+                  "text": "p5.Vector"
+                }
+              }
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "addBezierMethods",
+          "declaration": {
+            "name": "addBezierMethods",
+            "module": "src/methods/shape_methods.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "addCurveMethods",
+          "declaration": {
+            "name": "addCurveMethods",
+            "module": "src/methods/shape_methods.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/methods/transform_methods.js",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "add2DTransformMethods",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#transform_matrix",
+              "privacy": "private",
+              "default": "new DOMMatrix()"
+            },
+            {
+              "kind": "field",
+              "name": "transform_matrix",
+              "description": "transform_matrix stores the result of all the transformation\nproperties applied to this element. (read-only)",
+              "type": {
+                "text": "DOMMatrix"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "transform",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "canvas_to_local_position",
+              "parameters": [
+                {
+                  "name": "x",
+                  "default": "0"
+                },
+                {
+                  "name": "y",
+                  "default": "0"
+                },
+                {
+                  "name": "z",
+                  "default": "0"
+                },
+                {
+                  "name": "canvas_position",
+                  "type": {
+                    "text": "p5.Vector"
+                  }
+                }
+              ],
+              "description": "Converts a position on the canvas to a position in\nthis element's transformed space.",
+              "return": {
+                "type": {
+                  "text": "p5.Vector"
+                }
+              },
+              "inheritedFrom": {
+                "name": "addPositionConverters",
+                "module": "src/methods/transform_methods.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "local_to_canvas_position",
+              "parameters": [
+                {
+                  "name": "x",
+                  "default": "0"
+                },
+                {
+                  "name": "y",
+                  "default": "0"
+                },
+                {
+                  "name": "z",
+                  "default": "0"
+                },
+                {
+                  "name": "local_position",
+                  "type": {
+                    "text": "p5.Vector"
+                  }
+                }
+              ],
+              "description": "Converts a position in this element's transformed space to a\nposition on the canvas.",
+              "return": {
+                "type": {
+                  "text": "p5.Vector"
+                }
+              },
+              "inheritedFrom": {
+                "name": "addPositionConverters",
+                "module": "src/methods/transform_methods.js"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "addPositionConverters",
+              "module": "src/methods/transform_methods.js"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        },
+        {
+          "kind": "mixin",
+          "description": "",
+          "name": "add3DTransformMethods",
+          "members": [
+            {
+              "kind": "method",
+              "name": "transform"
+            },
+            {
+              "kind": "method",
+              "name": "canvas_to_local_position",
+              "parameters": [
+                {
+                  "name": "x",
+                  "default": "0"
+                },
+                {
+                  "name": "y",
+                  "default": "0"
+                },
+                {
+                  "name": "z",
+                  "default": "0"
+                },
+                {
+                  "name": "canvas_position",
+                  "type": {
+                    "text": "p5.Vector"
+                  }
+                }
+              ],
+              "description": "Converts a position on the canvas to a position in\nthis element's transformed space.",
+              "return": {
+                "type": {
+                  "text": "p5.Vector"
+                }
+              },
+              "inheritedFrom": {
+                "name": "addPositionConverters",
+                "module": "src/methods/transform_methods.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "local_to_canvas_position",
+              "parameters": [
+                {
+                  "name": "x",
+                  "default": "0"
+                },
+                {
+                  "name": "y",
+                  "default": "0"
+                },
+                {
+                  "name": "z",
+                  "default": "0"
+                },
+                {
+                  "name": "local_position",
+                  "type": {
+                    "text": "p5.Vector"
+                  }
+                }
+              ],
+              "description": "Converts a position in this element's transformed space to a\nposition on the canvas.",
+              "return": {
+                "type": {
+                  "text": "p5.Vector"
+                }
+              },
+              "inheritedFrom": {
+                "name": "addPositionConverters",
+                "module": "src/methods/transform_methods.js"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "addPositionConverters",
+              "module": "src/methods/transform_methods.js"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "baseClass"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "add2DTransformMethods",
+          "declaration": {
+            "name": "add2DTransformMethods",
+            "module": "src/methods/transform_methods.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "add3DTransformMethods",
+          "declaration": {
+            "name": "add3DTransformMethods",
+            "module": "src/methods/transform_methods.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/utils/caseConvert.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "camelToKebab",
+          "parameters": [
+            {
+              "name": "camelStr"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "camelToSnake",
+          "parameters": [
+            {
+              "name": "camelStr"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "kebabToCamel",
+          "parameters": [
+            {
+              "name": "kebabStr"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "pascalToCamel",
+          "parameters": [
+            {
+              "name": "pascalStr"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "pascalToKebab",
+          "parameters": [
+            {
+              "name": "pascalStr"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "pascalToSnake",
+          "parameters": [
+            {
+              "name": "pascalStr"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "snakeToCamel",
+          "parameters": [
+            {
+              "name": "snakeStr"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "camelToKebab",
+          "declaration": {
+            "name": "camelToKebab",
+            "module": "src/utils/caseConvert.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "camelToSnake",
+          "declaration": {
+            "name": "camelToSnake",
+            "module": "src/utils/caseConvert.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "kebabToCamel",
+          "declaration": {
+            "name": "kebabToCamel",
+            "module": "src/utils/caseConvert.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "pascalToCamel",
+          "declaration": {
+            "name": "pascalToCamel",
+            "module": "src/utils/caseConvert.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "pascalToKebab",
+          "declaration": {
+            "name": "pascalToKebab",
+            "module": "src/utils/caseConvert.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "pascalToSnake",
+          "declaration": {
+            "name": "pascalToSnake",
+            "module": "src/utils/caseConvert.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "snakeToCamel",
+          "declaration": {
+            "name": "snakeToCamel",
+            "module": "src/utils/caseConvert.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/utils/p5Modifiers.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "defineProperties",
+          "parameters": [
+            {
+              "name": "obj"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "wrapMethod",
+          "parameters": [
+            {
+              "name": "methodName"
+            },
+            {
+              "name": "wrapper"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "defineSnakeAlias",
+          "parameters": [
+            {
+              "name": "propNames"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "defineRendererGetterSetters",
+          "parameters": [
+            {
+              "name": "methodNames"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "defineProperties",
+          "declaration": {
+            "name": "defineProperties",
+            "module": "src/utils/p5Modifiers.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "wrapMethod",
+          "declaration": {
+            "name": "wrapMethod",
+            "module": "src/utils/p5Modifiers.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "defineSnakeAlias",
+          "declaration": {
+            "name": "defineSnakeAlias",
+            "module": "src/utils/p5Modifiers.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "defineRendererGetterSetters",
+          "declaration": {
+            "name": "defineRendererGetterSetters",
+            "module": "src/utils/p5Modifiers.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/dom.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/environment.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/events.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/io.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/rendering.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/structure.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/properties/3d_props.js",
       "declarations": [
         {
@@ -79383,952 +82202,6 @@
           "declaration": {
             "name": "addTypographyProps",
             "module": "src/properties/typography_props.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/methods/3d_methods.js",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addWebGLMethods",
-          "members": [
-            {
-              "kind": "method",
-              "name": "create_camera",
-              "description": "Creates a new <a href=\"#/p5.Camera\">p5.Camera</a> object and sets it\nas the current (active) camera.\n\nThe new camera is initialized with a default position\n(see camera property)\nand a default perspective projection\n(see <a href=\"#/p5.Camera/perspective\">perspective()</a>).\nIts properties can be controlled with the <a href=\"#/p5.Camera\">p5.Camera</a>\nmethods.\n\nNote: Every 3D sketch starts with a default camera initialized.\nThis camera can be controlled with the canvas properties\ncamera,\nperspective, ortho,\nand frustum if it is the only camera\nin the scene.",
-              "return": {
-                "type": {
-                  "text": "p5.Camera"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "create_shader",
-              "description": "Creates a new <a href=\"#/p5.Shader\">p5.Shader</a> object\nfrom the provided vertex and fragment shader code.\n\nNote, shaders can only be used in WEBGL mode.",
-              "parameters": [
-                {
-                  "description": "source code for the vertex shader",
-                  "name": "vertSrc",
-                  "type": {
-                    "text": "String"
-                  }
-                },
-                {
-                  "description": "source code for the fragment shader",
-                  "name": "fragSrc",
-                  "type": {
-                    "text": "String"
-                  }
-                }
-              ],
-              "return": {
-                "type": {
-                  "text": "p5.Shader"
-                }
-              }
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "addWebGLMethods",
-          "declaration": {
-            "name": "addWebGLMethods",
-            "module": "src/methods/3d_methods.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/methods/canvas_methods.js",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addCanvasMethods",
-          "members": [
-            {
-              "kind": "method",
-              "name": "attributeInherited",
-              "parameters": [
-                {
-                  "name": "attributeName"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "runCode"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "addCanvasMethods",
-          "declaration": {
-            "name": "addCanvasMethods",
-            "module": "src/methods/canvas_methods.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/methods/collide_methods.js",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "{ collider_type }",
-          "default": "Collide"
-        },
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addCollide",
-          "members": [
-            {
-              "kind": "field",
-              "name": "collide",
-              "default": "new Collide(this)",
-              "description": "The collide object provides collision detection methods for different\nshapes. These methods are adapted from\n<a href=\"https://github.com/bmoren\">Ben Moren's</a>\n<a href=\"https://github.com/bmoren/p5.collide2D\">Collide2D library</a>.\nThese links are written how these methods would be called in Marker, and\nthey link to the documentation for their corresponding Collide2D\nfunction, which has the same parameters:\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointpoint\">\ncollide.point_point()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointcircle\">\ncollide.point_circle()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointellipse\">\ncollide.point_ellipse()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointrect\">\ncollide.point_rect()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointline\">\ncollide.point_line()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointarc\">\ncollide.point_arc()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#colliderectrect\">\ncollide.rect_rect()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidecirclecircle\">\ncollide.circle_circle()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#colliderectcircle\">\ncollide.rect_circle()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidelineline\">\ncollide.line_line()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidelinecircle\">\ncollide.line_circle()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidelinerect\">\ncollide.line_rect()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointpoly\">\ncollide.point_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidecirclepoly\">\ncollide.circle_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#colliderectpoly\">\ncollide.rect_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidelinepoly\">\ncollide.line_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepolypoly\">\ncollide.poly_poly()</a>\n- <a href=\"https://github.com/bmoren/p5.collide2D#collidepointtriangle\">\ncollide.point_triangle()</a>"
-            },
-            {
-              "kind": "method",
-              "name": "colliding_with",
-              "parameters": [
-                {
-                  "name": "el",
-                  "description": "other element to check",
-                  "type": {
-                    "text": "P5Element"
-                  }
-                }
-              ],
-              "description": "Checks if this element is colliding with the provided other element.",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "{ collider_type }",
-          "declaration": {
-            "name": "{ collider_type }",
-            "module": "src/methods/collide_methods.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "addCollide",
-          "declaration": {
-            "name": "addCollide",
-            "module": "src/methods/collide_methods.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/methods/color_methods.js",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addColorMethods",
-          "members": [
-            {
-              "kind": "method",
-              "name": "lerp_color"
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "addColorMethods",
-          "declaration": {
-            "name": "addColorMethods",
-            "module": "src/methods/color_methods.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/methods/data_methods.js",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addDataMethods",
-          "members": [
-            {
-              "kind": "method",
-              "name": "create_string_dict",
-              "description": "\nCreates a new instance of p5.StringDict using the key-value pair\nor the object you provide.",
-              "parameters": [
-                {
-                  "name": "key",
-                  "type": {
-                    "text": "String"
-                  }
-                },
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "String"
-                  }
-                },
-                {
-                  "description": "key-value pairs",
-                  "name": "object",
-                  "type": {
-                    "text": "Object"
-                  }
-                }
-              ],
-              "return": {
-                "type": {
-                  "text": "p5.StringDict"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "create_number_dict",
-              "description": "\nCreates a new instance of <a href=\"#/p5.NumberDict\">p5.NumberDict</a> using the key-value pair\nor object you provide.",
-              "parameters": [
-                {
-                  "name": "key",
-                  "type": {
-                    "text": "Number"
-                  }
-                },
-                {
-                  "name": "value",
-                  "type": {
-                    "text": "Number"
-                  }
-                },
-                {
-                  "description": "key-value pairs",
-                  "name": "object",
-                  "type": {
-                    "text": "Object"
-                  }
-                }
-              ],
-              "return": {
-                "type": {
-                  "text": "p5.NumberDict"
-                }
-              }
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "addDataMethods",
-          "declaration": {
-            "name": "addDataMethods",
-            "module": "src/methods/data_methods.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/methods/math_methods.js",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addMathMethods",
-          "members": [
-            {
-              "kind": "method",
-              "name": "vector",
-              "description": "Creates a new <a href=\"#/p5.Vector\">p5.Vector</a> (the datatype for storing vectors). This provides a\ntwo or three-dimensional vector, specifically a Euclidean (also known as\ngeometric) vector. A vector is an entity that has both magnitude and\ndirection.",
-              "parameters": [
-                {
-                  "description": "x component of the vector",
-                  "name": "x",
-                  "optional": true,
-                  "type": {
-                    "text": "Number"
-                  }
-                },
-                {
-                  "description": "y component of the vector",
-                  "name": "y",
-                  "optional": true,
-                  "type": {
-                    "text": "Number"
-                  }
-                },
-                {
-                  "description": "z component of the vector",
-                  "name": "z",
-                  "optional": true,
-                  "type": {
-                    "text": "Number"
-                  }
-                }
-              ],
-              "return": {
-                "type": {
-                  "text": "p5.Vector"
-                }
-              }
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "addMathMethods",
-          "declaration": {
-            "name": "addMathMethods",
-            "module": "src/methods/math_methods.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/methods/shape_methods.js",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addBezierMethods",
-          "members": [
-            {
-              "kind": "method",
-              "name": "point_at",
-              "parameters": [
-                {
-                  "name": "t",
-                  "description": "value between 0 and 1",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ],
-              "description": "Evaluates the position on the bezier at t. t is the\nresultant point which is given between 0 (start of Bezier) and 1 (end of Bezier).",
-              "return": {
-                "type": {
-                  "text": "p5.Vector"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "tangent_at",
-              "parameters": [
-                {
-                  "name": "t",
-                  "description": "value between 0 and 1",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ],
-              "description": "Evaluates the tangent to the Bezier at position t.\nt is between 0 (start of Bezier) and 1 (end of Bezier).",
-              "return": {
-                "type": {
-                  "text": "p5.Vector"
-                }
-              }
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        },
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addCurveMethods",
-          "members": [
-            {
-              "kind": "method",
-              "name": "point_at",
-              "parameters": [
-                {
-                  "name": "t",
-                  "description": "value between 0 and 1",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ],
-              "description": "Evaluates the position on the curve at t.\nt is between 0 (start of curve) and 1 (end of curve).",
-              "return": {
-                "type": {
-                  "text": "p5.Vector"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "tangent_at",
-              "parameters": [
-                {
-                  "name": "t",
-                  "description": "value between 0 and 1",
-                  "type": {
-                    "text": "number"
-                  }
-                }
-              ],
-              "description": "Evaluates the tangent to the curve at t.\nt is between 0 (start of curve) and 1 (end of curve).",
-              "return": {
-                "type": {
-                  "text": "p5.Vector"
-                }
-              }
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "addBezierMethods",
-          "declaration": {
-            "name": "addBezierMethods",
-            "module": "src/methods/shape_methods.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "addCurveMethods",
-          "declaration": {
-            "name": "addCurveMethods",
-            "module": "src/methods/shape_methods.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/methods/transform_methods.js",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "add2DTransformMethods",
-          "members": [
-            {
-              "kind": "field",
-              "name": "#transform_matrix",
-              "privacy": "private",
-              "default": "new DOMMatrix()"
-            },
-            {
-              "kind": "field",
-              "name": "transform_matrix",
-              "description": "transform_matrix stores the result of all the transformation\nproperties applied to this element. (read-only)",
-              "type": {
-                "text": "DOMMatrix"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "transform",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "canvas_to_local_position",
-              "parameters": [
-                {
-                  "name": "x",
-                  "default": "0"
-                },
-                {
-                  "name": "y",
-                  "default": "0"
-                },
-                {
-                  "name": "z",
-                  "default": "0"
-                },
-                {
-                  "name": "canvas_position",
-                  "type": {
-                    "text": "p5.Vector"
-                  }
-                }
-              ],
-              "description": "Converts a position on the canvas to a position in\nthis element's transformed space.",
-              "return": {
-                "type": {
-                  "text": "p5.Vector"
-                }
-              },
-              "inheritedFrom": {
-                "name": "addPositionConverters",
-                "module": "src/methods/transform_methods.js"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "local_to_canvas_position",
-              "parameters": [
-                {
-                  "name": "x",
-                  "default": "0"
-                },
-                {
-                  "name": "y",
-                  "default": "0"
-                },
-                {
-                  "name": "z",
-                  "default": "0"
-                },
-                {
-                  "name": "local_position",
-                  "type": {
-                    "text": "p5.Vector"
-                  }
-                }
-              ],
-              "description": "Converts a position in this element's transformed space to a\nposition on the canvas.",
-              "return": {
-                "type": {
-                  "text": "p5.Vector"
-                }
-              },
-              "inheritedFrom": {
-                "name": "addPositionConverters",
-                "module": "src/methods/transform_methods.js"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "addPositionConverters",
-              "module": "src/methods/transform_methods.js"
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        },
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "add3DTransformMethods",
-          "members": [
-            {
-              "kind": "method",
-              "name": "transform"
-            },
-            {
-              "kind": "method",
-              "name": "canvas_to_local_position",
-              "parameters": [
-                {
-                  "name": "x",
-                  "default": "0"
-                },
-                {
-                  "name": "y",
-                  "default": "0"
-                },
-                {
-                  "name": "z",
-                  "default": "0"
-                },
-                {
-                  "name": "canvas_position",
-                  "type": {
-                    "text": "p5.Vector"
-                  }
-                }
-              ],
-              "description": "Converts a position on the canvas to a position in\nthis element's transformed space.",
-              "return": {
-                "type": {
-                  "text": "p5.Vector"
-                }
-              },
-              "inheritedFrom": {
-                "name": "addPositionConverters",
-                "module": "src/methods/transform_methods.js"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "local_to_canvas_position",
-              "parameters": [
-                {
-                  "name": "x",
-                  "default": "0"
-                },
-                {
-                  "name": "y",
-                  "default": "0"
-                },
-                {
-                  "name": "z",
-                  "default": "0"
-                },
-                {
-                  "name": "local_position",
-                  "type": {
-                    "text": "p5.Vector"
-                  }
-                }
-              ],
-              "description": "Converts a position in this element's transformed space to a\nposition on the canvas.",
-              "return": {
-                "type": {
-                  "text": "p5.Vector"
-                }
-              },
-              "inheritedFrom": {
-                "name": "addPositionConverters",
-                "module": "src/methods/transform_methods.js"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "addPositionConverters",
-              "module": "src/methods/transform_methods.js"
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "add2DTransformMethods",
-          "declaration": {
-            "name": "add2DTransformMethods",
-            "module": "src/methods/transform_methods.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "add3DTransformMethods",
-          "declaration": {
-            "name": "add3DTransformMethods",
-            "module": "src/methods/transform_methods.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/dom.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/environment.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/events.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/io.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/rendering.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/structure.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/utils/caseConvert.js",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "camelToKebab",
-          "parameters": [
-            {
-              "name": "camelStr"
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "camelToSnake",
-          "parameters": [
-            {
-              "name": "camelStr"
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "kebabToCamel",
-          "parameters": [
-            {
-              "name": "kebabStr"
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "pascalToCamel",
-          "parameters": [
-            {
-              "name": "pascalStr"
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "pascalToKebab",
-          "parameters": [
-            {
-              "name": "pascalStr"
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "pascalToSnake",
-          "parameters": [
-            {
-              "name": "pascalStr"
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "snakeToCamel",
-          "parameters": [
-            {
-              "name": "snakeStr"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "camelToKebab",
-          "declaration": {
-            "name": "camelToKebab",
-            "module": "src/utils/caseConvert.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "camelToSnake",
-          "declaration": {
-            "name": "camelToSnake",
-            "module": "src/utils/caseConvert.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "kebabToCamel",
-          "declaration": {
-            "name": "kebabToCamel",
-            "module": "src/utils/caseConvert.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "pascalToCamel",
-          "declaration": {
-            "name": "pascalToCamel",
-            "module": "src/utils/caseConvert.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "pascalToKebab",
-          "declaration": {
-            "name": "pascalToKebab",
-            "module": "src/utils/caseConvert.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "pascalToSnake",
-          "declaration": {
-            "name": "pascalToSnake",
-            "module": "src/utils/caseConvert.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "snakeToCamel",
-          "declaration": {
-            "name": "snakeToCamel",
-            "module": "src/utils/caseConvert.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/utils/p5Modifiers.js",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "defineProperties",
-          "parameters": [
-            {
-              "name": "obj"
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "wrapMethod",
-          "parameters": [
-            {
-              "name": "methodName"
-            },
-            {
-              "name": "wrapper"
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "defineSnakeAlias",
-          "parameters": [
-            {
-              "name": "propNames"
-            }
-          ]
-        },
-        {
-          "kind": "function",
-          "name": "defineRendererGetterSetters",
-          "parameters": [
-            {
-              "name": "methodNames"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "defineProperties",
-          "declaration": {
-            "name": "defineProperties",
-            "module": "src/utils/p5Modifiers.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "wrapMethod",
-          "declaration": {
-            "name": "wrapMethod",
-            "module": "src/utils/p5Modifiers.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "defineSnakeAlias",
-          "declaration": {
-            "name": "defineSnakeAlias",
-            "module": "src/utils/p5Modifiers.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "defineRendererGetterSetters",
-          "declaration": {
-            "name": "defineRendererGetterSetters",
-            "module": "src/utils/p5Modifiers.js"
           }
         }
       ]
