@@ -22,6 +22,7 @@ function focusNewAttribute(e: any) {
     <input
       v-model="allAttributes[name]"
       @keydown.delete.stop
+      @keydown.left.stop
       @keydown.enter="refreshPreview"
       @blur="refreshPreview"
     />
