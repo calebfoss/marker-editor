@@ -13346,10 +13346,6 @@
             },
             {
               "kind": "field",
-              "name": "svg"
-            },
-            {
-              "kind": "field",
               "name": "#x",
               "privacy": "private",
               "type": {
@@ -66019,14 +66015,6 @@
               "default": "\"p2d\""
             },
             {
-              "kind": "field",
-              "name": "download_svg"
-            },
-            {
-              "kind": "field",
-              "name": "svg"
-            },
-            {
               "kind": "method",
               "name": "attributeInherited",
               "parameters": [
@@ -80341,46 +80329,6 @@
           "declaration": {
             "name": "defineRendererGetterSetters",
             "module": "src/utils/p5Modifiers.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/utils/svg_conversion.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "createSVGElement",
-          "parameters": [
-            {
-              "name": "markerElement",
-              "type": {
-                "text": "{ fill?: string; stroke?: string }"
-              }
-            },
-            {
-              "name": "svgElementName",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "name": "attributes",
-              "type": {
-                "text": "object"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "createSVGElement",
-          "declaration": {
-            "name": "createSVGElement",
-            "module": "src/utils/svg_conversion.ts"
           }
         }
       ]
