@@ -62,6 +62,36 @@ const rootElement: MarkerElement = reactive({
   description: ''
 })
 
+function downloadSketch(e: Event) {
+  const downloadLink = document.createElement('a')
+  const docString = JSON.stringify(rootElement)
+  const blob = new Blob([docString], { type: 'application/json' })
+  downloadLink.href = URL.createObjectURL(blob)
+  downloadLink.download = 'MarkerSketch.json'
+  downloadLink.click()
+}
+
+function regenerateKeys(element: MarkerElement) {
+  element.key = generateKey()
+  for (const child of element.children) {
+    regenerateKeys(child)
+  }
+}
+
+async function loadSketch(e: Event) {
+  const inputElement = e.target as HTMLInputElement
+  const { files } = inputElement
+  if (files === null) return
+  const file = files.item(0)
+  if (file === null) return
+  const fileString = await file.text()
+  const fileObj = JSON.parse(fileString)
+  regenerateKeys(fileObj)
+  Object.assign(rootElement, fileObj)
+  refreshPreview()
+  inputElement.value = ''
+}
+
 const iframeRef = ref<HTMLIFrameElement | null>(null)
 const appRef = ref<App | null>(null)
 
@@ -94,6 +124,13 @@ function refreshPreview() {
 
 <template>
   <section id="sketch-editor">
+    <nav style="display: flex; justify-content: space-around; padding: 10px">
+      <button @click="downloadSketch">Download</button>
+      <div>
+        <label for="file-select" style="margin-right: 10px">Load</label
+        ><input id="file-select" type="file" accept=".json" @change="loadSketch" />
+      </div>
+    </nav>
     <ElementEditor
       :element="rootElement"
       :docs="docs"
