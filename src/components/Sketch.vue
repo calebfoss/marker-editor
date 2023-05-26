@@ -100,6 +100,19 @@ function refreshPreview() {
   iframeWindow.location.reload()
   mountPreview()
 }
+
+const editorRef = ref<HTMLElement | null>(null)
+
+function startResizing() {
+  window.addEventListener('mousemove', resizeEditor)
+  window.addEventListener('mouseup', () => window.removeEventListener('mousemove', resizeEditor))
+}
+function resizeEditor(e: MouseEvent) {
+  if (editorRef.value === null) return
+  const editor = editorRef.value
+  const x = e.clientX
+  editor.style.width = `${x}px`
+}
 </script>
 
 <template>
@@ -108,7 +121,7 @@ function refreshPreview() {
     :root-element="rootElement"
     :refresh-preview="refreshPreview"
   ></MenuBar>
-  <section id="sketch-editor">
+  <section id="sketch-editor" ref="editorRef">
     <ElementEditor
       :element="rootElement"
       :refresh-preview="refreshPreview"
@@ -116,6 +129,7 @@ function refreshPreview() {
       class="root-element"
     ></ElementEditor>
   </section>
+  <span class="resize-bar" @mousedown="startResizing"></span>
   <section id="preview">
     <iframe src="preview.html" @load="mountPreview" ref="iframeRef"></iframe>
     <button @click="refreshPreview">Reload</button>
