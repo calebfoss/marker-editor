@@ -60,7 +60,6 @@ h1 {
 }
 
 .element-editor {
-  width: 400px;
   border: rgb(190, 190, 190) solid 4px;
   background: var(--color-background);
   padding: 20px 2px 20px 20px;
@@ -81,7 +80,9 @@ h1 {
 }
 
 .element-editor .children {
-  margin-left: 40px
+  margin-left: 40px;
+  display: grid;
+  justify-items: start;
 }
 
 .attributes-editor {
@@ -91,20 +92,23 @@ h1 {
 
 .attribute-editor {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-auto-flow: column;
+
 }
 
 .attribute-editor:focus {
   border-style: dashed;
 }
 
+
 .attribute-editor label {
-  width: 10ch;
+  margin-right: 10px;
 }
 
 .attribute-editor input {
   justify-self: right;
-  width: 30ch;
+  min-width: 40ch;
+  font-family: monospace;
 }
 
 .attribute-editor input:focus {
