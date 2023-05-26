@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 
-const { element, docs, addAttribute } = defineProps<{
+const { element, addAttribute } = defineProps<{
   element: MarkerElement
   addAttribute: (e: Event) => void
-  docs: MarkerDocs
 }>()
 
-const docElement = docs.find((el) => el.name === element.tag)
+const baseElements = inject<MarkerDocs>('baseElements') as MarkerDocs
+const docElement = baseElements.find((el) => el.name === element.tag)
 const options =
   typeof docElement === 'undefined'
     ? ['custom']

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import manifest from '../custom-elements.json'
-import { createApp, type App, reactive, ref } from 'vue'
+import { createApp, type App, provide, reactive, ref } from 'vue'
 import ElementEditor from './ElementEditor.vue'
-import ElementPreview from './ElementPreview.vue'
+import SketchPreview from './SketchPreview.vue'
 import MenuBar from './MenuBar.vue'
 
 const byName = (a: { name: string }, b: { name: string }) => {
@@ -17,7 +17,7 @@ const keyGenerator = (function* () {
 })()
 const generateKey = () => keyGenerator.next().value
 
-const docs: MarkerDocs = manifest.modules
+const baseElements: MarkerDocs = manifest.modules
   .reduce(
     (elements: MarkerDocElement[], mod) =>
       elements.concat(
@@ -46,6 +46,7 @@ const docs: MarkerDocs = manifest.modules
     []
   )
   .sort(byName)
+provide('baseElements', baseElements)
 
 const rootElement: MarkerElement = reactive({
   tag: 'p-sketch',
@@ -66,6 +67,9 @@ const rootElement: MarkerElement = reactive({
 const iframeRef = ref<HTMLIFrameElement | null>(null)
 const appRef = ref<App | null>(null)
 
+const customElements: MarkerDocs = reactive([])
+provide('customElements', customElements)
+
 function mountPreview() {
   const iframe = iframeRef.value
   if (iframe === null) {
@@ -78,8 +82,9 @@ function mountPreview() {
     return
   }
   const iframeBody = iframeDoc.body
-  const element = rootElement
-  const app = createApp(ElementPreview, { element })
+  const app = createApp(SketchPreview, { rootElement, iframeRef })
+  app.provide('baseElements', baseElements)
+  app.provide('customElements', customElements)
   appRef.value = app
   app.mount(iframeBody)
 }
@@ -88,7 +93,11 @@ function refreshPreview() {
   if (appRef.value === null) return
   const oldApp = appRef.value
   oldApp.unmount()
+  while (customElements.length) customElements.pop()
   appRef.value = null
+  const iframe = iframeRef.value as HTMLIFrameElement
+  const iframeWindow = iframe.contentWindow as Window
+  iframeWindow.location.reload()
   mountPreview()
 }
 </script>
@@ -102,7 +111,6 @@ function refreshPreview() {
   <section id="sketch-editor">
     <ElementEditor
       :element="rootElement"
-      :docs="docs"
       :refresh-preview="refreshPreview"
       :generate-key="generateKey"
       class="root-element"

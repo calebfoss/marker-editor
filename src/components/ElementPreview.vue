@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  if (elRef.value !== null && isCanvas) elRef.value.pInst.remove()
+  if (elRef.value !== null && isCanvas) elRef.value.pInst?.remove()
 })
 </script>
 

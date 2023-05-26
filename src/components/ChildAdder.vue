@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-const { addChild, canvas, docs } = defineProps<{
+import { computed, inject, ref, type Ref } from 'vue'
+const { addChild, canvas } = defineProps<{
   addChild: (tag: string) => void
-  docs: MarkerDocs
   canvas?: MarkerElement
 }>()
 
 const adding = ref(false)
+const baseElements = inject<MarkerDocs>('baseElements') as MarkerDocs
+const customElements = inject<MarkerDocs>('customElements') as MarkerDocs
 
 function toggleSelect() {
   adding.value = !adding.value
@@ -28,7 +29,7 @@ function optionClicked(e: Event) {
 
 const primitives3d = ['plane', 'box', 'sphere', 'cylinder', 'cone', 'ellipsoid', 'torus', 'model']
 const filteredOptions = computed(() =>
-  docs.filter((docElement) => {
+  baseElements.concat(...customElements).filter((docElement) => {
     if (typeof canvas === 'undefined') return true
     if (docElement.name.slice(2, 9) === `canvas`) return false
     const is3d =

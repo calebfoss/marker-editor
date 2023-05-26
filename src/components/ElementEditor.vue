@@ -6,7 +6,6 @@ import ChildAdder from './ChildAdder.vue'
 
 const { element, refreshPreview, generateKey, parentElement } = defineProps<{
   element: MarkerElement
-  docs: MarkerDocs
   refreshPreview: () => void
   generateKey: () => string
   parentElement?: MarkerElement
@@ -121,7 +120,7 @@ function updateCanvasTag() {
       >
       </AttributeEditor>
     </div>
-    <AttributeAdder :element="element" :add-attribute="addAttribute" :docs="docs"></AttributeAdder>
+    <AttributeAdder :element="element" :add-attribute="addAttribute"></AttributeAdder>
     <div class="description">
       <label>Description</label>
       <textarea
@@ -135,7 +134,6 @@ function updateCanvasTag() {
       <ElementEditor
         v-for="(child, index) in element.children"
         :element="child"
-        :docs="docs"
         :refresh-preview="refreshPreview"
         :key="child.key"
         :generate-key="generateKey"
@@ -148,10 +146,6 @@ function updateCanvasTag() {
       >
       </ElementEditor>
     </div>
-    <ChildAdder
-      :add-child="addChild"
-      :docs="docs"
-      :canvas="isCanvas ? element : canvas"
-    ></ChildAdder>
+    <ChildAdder :add-child="addChild" :canvas="isCanvas ? element : canvas"></ChildAdder>
   </div>
 </template>
