@@ -7,7 +7,10 @@ const { element, addAttribute } = defineProps<{
 }>()
 
 const baseElements = inject<MarkerDocs>('baseElements') as MarkerDocs
-const docElement = baseElements.find((el) => el.name === element.tag)
+const customElements = inject<MarkerDocs>('customElements') as MarkerDocs
+const docElement =
+  baseElements.find((el) => el.name === element.tag) ||
+  customElements.find((el) => el.name === element.tag)
 const options =
   typeof docElement === 'undefined'
     ? ['custom']
