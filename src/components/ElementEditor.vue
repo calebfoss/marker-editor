@@ -12,6 +12,12 @@ const { element, refreshPreview, generateKey, parentElement } = defineProps<{
   canvas?: MarkerElement
 }>()
 
+const folded = ref(false)
+
+function toggleFolded() {
+  folded.value = !folded.value
+}
+
 function addChild(tag: string) {
   const child: MarkerElement = {
     tag,
@@ -97,55 +103,73 @@ function updateCanvasTag() {
   element.tag = is3D ? 'p-canvas-3d' : 'p-canvas'
   refreshPreview()
 }
+
+const headingName = computed(() => {
+  const elementName =
+    element.tag.slice(-2) === `3d` ? element.tag.slice(2, -3) : element.tag.slice(2)
+  if ('name' in element.attributes === false) return elementName
+  const nameStrippedOfSemicolons = element.attributes.name
+    ?.match(/;?([^;]*);?/)
+    ?.slice(1)
+    .join()
+  return `${elementName}: ${nameStrippedOfSemicolons}`
+})
 </script>
 
 <template>
   <div class="element-editor" :tabindex="0">
-    <h2>{{ element.tag.slice(-2) === `3d` ? element.tag.slice(2, -3) : element.tag.slice(2) }}</h2>
-    <div v-if="isCanvas">
-      <input
-        style="margin-right: 10px"
-        type="checkbox"
-        v-model="isCanvas3D"
-        @change="updateCanvasTag"
-      /><label>3D</label>
+    <header>
+      <h2>
+        {{ headingName }}
+      </h2>
+      <button :class="{ 'fold-toggle': true, folded: folded }" @click="toggleFolded"></button>
+    </header>
+    <div v-show="!folded">
+      <div v-if="isCanvas">
+        <input
+          style="margin-right: 10px"
+          type="checkbox"
+          v-model="isCanvas3D"
+          @change="updateCanvasTag"
+        /><label>3D</label>
+      </div>
+      <div class="attributes-editor">
+        <AttributeEditor
+          v-for="(_, name) in element.attributes"
+          :name="name.toString()"
+          :all-attributes="element.attributes"
+          :remove="removeAttribute"
+          :refresh-preview="refreshPreview"
+        >
+        </AttributeEditor>
+      </div>
+      <AttributeAdder :element="element" :add-attribute="addAttribute"></AttributeAdder>
+      <div class="description">
+        <label>Description</label>
+        <textarea
+          v-model="element.description"
+          @blur="refreshPreview"
+          @keydown.enter.stop.prevent="refreshPreview"
+          @keydown.backspace.stop
+        ></textarea>
+      </div>
+      <div class="children">
+        <ElementEditor
+          v-for="(child, index) in element.children"
+          :element="child"
+          :refresh-preview="refreshPreview"
+          :key="child.key"
+          :generate-key="generateKey"
+          :parent-element="element"
+          :canvas="isCanvas ? element : canvas"
+          @keydown.delete.stop="() => removeChild(index)"
+          @keydown.up.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentChildUp(index) : moveChildUp(index)"
+          @keydown.down.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentChildDown(index) : moveChildDown(index)"
+          @keydown.left.stop.prevent="() => childToSibling(index)"
+        >
+        </ElementEditor>
+      </div>
+      <ChildAdder :add-child="addChild" :canvas="isCanvas ? element : canvas"></ChildAdder>
     </div>
-    <div class="attributes-editor">
-      <AttributeEditor
-        v-for="(_, name) in element.attributes"
-        :name="name.toString()"
-        :all-attributes="element.attributes"
-        :remove="removeAttribute"
-        :refresh-preview="refreshPreview"
-      >
-      </AttributeEditor>
-    </div>
-    <AttributeAdder :element="element" :add-attribute="addAttribute"></AttributeAdder>
-    <div class="description">
-      <label>Description</label>
-      <textarea
-        v-model="element.description"
-        @blur="refreshPreview"
-        @keydown.enter.stop.prevent="refreshPreview"
-        @keydown.backspace.stop
-      ></textarea>
-    </div>
-    <div class="children">
-      <ElementEditor
-        v-for="(child, index) in element.children"
-        :element="child"
-        :refresh-preview="refreshPreview"
-        :key="child.key"
-        :generate-key="generateKey"
-        :parent-element="element"
-        :canvas="isCanvas ? element : canvas"
-        @keydown.delete.stop="() => removeChild(index)"
-        @keydown.up.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentChildUp(index) : moveChildUp(index)"
-        @keydown.down.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentChildDown(index) : moveChildDown(index)"
-        @keydown.left.stop.prevent="() => childToSibling(index)"
-      >
-      </ElementEditor>
-    </div>
-    <ChildAdder :add-child="addChild" :canvas="isCanvas ? element : canvas"></ChildAdder>
   </div>
 </template>
