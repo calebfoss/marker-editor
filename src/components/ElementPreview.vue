@@ -11,7 +11,7 @@ onMounted(() => {
 
   for (const [name, value] of Object.entries(element.attributes)) el.setAttribute(name, value)
 
-  if (isCanvas) el.runCode()
+  if (isCanvas) el.runCode?.()
 })
 
 onBeforeUnmount(() => {
