@@ -129,6 +129,7 @@ function resizeEditor(e: MouseEvent) {
   <section id="sketch-editor" ref="editorRef">
     <ElementEditor
       :element="rootElement"
+      :inherited-attributes="[]"
       :refresh-preview="refreshPreview"
       :generate-key="generateKey"
       class="root-element"

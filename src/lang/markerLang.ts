@@ -1,6 +1,7 @@
 import { parser } from './parser'
 import { LanguageSupport, LRLanguage } from '@codemirror/language'
 import { styleTags, tags } from '@lezer/highlight'
+import { completeFromList } from '@codemirror/autocomplete'
 
 const markerScript = LRLanguage.define({ parser }).configure({
   props: [
@@ -18,4 +19,11 @@ const markerScript = LRLanguage.define({ parser }).configure({
   ]
 })
 
-export const markerLanguageSupport = new LanguageSupport(markerScript)
+export const markerScriptSupport = (attributes: string[]) =>
+  new LanguageSupport(markerScript, [
+    markerScript.data.of({
+      autocomplete: completeFromList(
+        attributes.map((attrName) => ({ label: attrName, type: 'Property' }))
+      )
+    })
+  ])

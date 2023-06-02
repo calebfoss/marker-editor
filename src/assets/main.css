@@ -156,3 +156,7 @@ button {
 option {
   background: black;
 }
+
+.cm-tooltip-autocomplete ul {
+  background: black;
+}

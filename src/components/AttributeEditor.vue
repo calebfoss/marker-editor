@@ -2,24 +2,27 @@
 import { onMounted, ref } from 'vue'
 import { EditorState } from '@codemirror/state'
 import { EditorView, ViewUpdate } from '@codemirror/view'
-import { markerLanguageSupport } from '@/lang/markerLang'
+import { autocompletion } from '@codemirror/autocomplete'
+import { markerScriptSupport } from '@/lang/markerLang'
 import { markerSyntaxHighlighting } from '@/lang/syntaxHighlighting'
 
-const { name, allAttributes } = defineProps<{
+const { allAttributes, name, elementAttributes } = defineProps<{
   name: string
-  allAttributes: MarkerAttributes
+  elementAttributes: MarkerAttributes
+  allAttributes: string[]
   remove: (name: string) => void
   refreshPreview: () => void
 }>()
 
 const state = EditorState.create({
-  doc: allAttributes[name],
+  doc: elementAttributes[name],
   extensions: [
     EditorView.updateListener.of(
-      (update: ViewUpdate) => (allAttributes[name] = update.state.doc.toString())
+      (update: ViewUpdate) => (elementAttributes[name] = update.state.doc.toString())
     ),
-    markerLanguageSupport,
-    markerSyntaxHighlighting
+    markerScriptSupport(allAttributes),
+    markerSyntaxHighlighting,
+    autocompletion({})
   ]
 })
 

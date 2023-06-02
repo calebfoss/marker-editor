@@ -1,16 +1,27 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, inject, ref } from 'vue'
 import AttributeAdder from './AttributeAdder.vue'
 import AttributeEditor from './AttributeEditor.vue'
 import ChildAdder from './ChildAdder.vue'
 
-const { element, refreshPreview, generateKey, parentElement } = defineProps<{
+const { element, refreshPreview, generateKey, inheritedAttributes, parentElement } = defineProps<{
   element: MarkerElement
+  inheritedAttributes: string[]
   refreshPreview: () => void
   generateKey: () => string
   parentElement?: MarkerElement
   canvas?: MarkerElement
 }>()
+
+const baseElements = inject<MarkerDocs>('baseElements') as MarkerDocs
+const customElements = inject<MarkerDocs>('customElements') as MarkerDocs
+const docElement =
+  baseElements.find((el) => el.name === element.tag) ||
+  customElements.find((el) => el.name === element.tag)
+const standardAttributes = ['custom'].concat(
+  typeof docElement === 'undefined' ? [] : docElement.attributes.map(({ name }) => name)
+)
+const allAttributes = Array.from(new Set(inheritedAttributes.concat(standardAttributes)))
 
 const folded = ref(false)
 
@@ -137,13 +148,18 @@ const headingName = computed(() => {
         <AttributeEditor
           v-for="(_, name) in element.attributes"
           :name="name.toString()"
-          :all-attributes="element.attributes"
+          :element-attributes="element.attributes"
+          :all-attributes="allAttributes"
           :remove="removeAttribute"
           :refresh-preview="refreshPreview"
         >
         </AttributeEditor>
       </div>
-      <AttributeAdder :element="element" :add-attribute="addAttribute"></AttributeAdder>
+      <AttributeAdder
+        :element="element"
+        :add-attribute="addAttribute"
+        :standard-attributes="standardAttributes"
+      ></AttributeAdder>
       <div class="description">
         <label>Description</label>
         <textarea
@@ -157,6 +173,7 @@ const headingName = computed(() => {
         <ElementEditor
           v-for="(child, index) in element.children"
           :element="child"
+          :inherited-attributes="allAttributes"
           :refresh-preview="refreshPreview"
           :key="child.key"
           :generate-key="generateKey"

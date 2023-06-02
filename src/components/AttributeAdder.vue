@@ -1,24 +1,12 @@
 <script setup lang="ts">
 import { inject, ref } from 'vue'
 
-const { element, addAttribute } = defineProps<{
+const { element, addAttribute, standardAttributes } = defineProps<{
   element: MarkerElement
   addAttribute: (e: Event) => void
+  standardAttributes: string[]
 }>()
-
-const baseElements = inject<MarkerDocs>('baseElements') as MarkerDocs
-const customElements = inject<MarkerDocs>('customElements') as MarkerDocs
-const docElement =
-  baseElements.find((el) => el.name === element.tag) ||
-  customElements.find((el) => el.name === element.tag)
-const options =
-  typeof docElement === 'undefined'
-    ? ['custom']
-    : ['custom'].concat(
-        docElement.attributes
-          .map(({ name }) => name)
-          .filter((a) => a in element.attributes === false)
-      )
+const options = standardAttributes.filter((a) => a in element.attributes === false)
 
 const selected = ref(options[0])
 
