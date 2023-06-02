@@ -10,6 +10,7 @@ body {
   grid-template-rows: 1fr 20fr;
   grid-template-columns: auto 1em 1fr;
   height: 100%;
+  overflow-x: hidden;
 }
 
 #menu-bar {

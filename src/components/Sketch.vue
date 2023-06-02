@@ -105,13 +105,18 @@ const editorRef = ref<HTMLElement | null>(null)
 
 function startResizing() {
   window.addEventListener('mousemove', resizeEditor)
-  window.addEventListener('mouseup', () => window.removeEventListener('mousemove', resizeEditor))
+  window.addEventListener('mouseout', resizeEditor)
+  window.addEventListener('mouseup', () => {
+    window.removeEventListener('mousemove', resizeEditor)
+    window.removeEventListener('mouseout', resizeEditor)
+  })
 }
 function resizeEditor(e: MouseEvent) {
   if (editorRef.value === null) return
   const editor = editorRef.value
   const x = e.clientX
   editor.style.width = `${x}px`
+  document.getSelection()?.empty()
 }
 </script>
 
