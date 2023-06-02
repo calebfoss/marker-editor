@@ -105,13 +105,13 @@ h1 {
   margin-right: 10px;
 }
 
-.attribute-editor input {
+.attribute-editor .attribute-expression {
   justify-self: right;
   min-width: 40ch;
   font-family: monospace;
 }
 
-.attribute-editor input:focus {
+.attribute-editor .attribute-expression :focus {
   border-style: dashed;
   outline: none;
 }
@@ -136,7 +136,8 @@ h1 {
 
 input,
 select,
-button {
+button,
+.attribute-expression {
   border: none;
   background: #282828;
   color: inherit;

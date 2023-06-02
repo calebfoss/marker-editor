@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import { EditorState } from '@codemirror/state'
+import { EditorView, ViewUpdate } from '@codemirror/view'
+
 const { name, allAttributes } = defineProps<{
   name: string
   allAttributes: MarkerAttributes
@@ -6,9 +10,28 @@ const { name, allAttributes } = defineProps<{
   refreshPreview: () => void
 }>()
 
+const state = EditorState.create({
+  doc: allAttributes[name],
+  extensions: [
+    EditorView.updateListener.of(
+      (update: ViewUpdate) => (allAttributes[name] = update.state.doc.toString())
+    )
+  ]
+})
+
 function focusNewAttribute(e: any) {
   e.el.children[1].focus()
 }
+
+const codeRef = ref<HTMLDivElement | null>(null)
+
+onMounted(() => {
+  if (codeRef.value === null) return
+  const view = new EditorView({
+    parent: codeRef.value,
+    state
+  })
+})
 </script>
 
 <template>
@@ -19,12 +42,13 @@ function focusNewAttribute(e: any) {
     @vue:mounted="focusNewAttribute"
   >
     <label>{{ name }}</label>
-    <input
-      v-model="allAttributes[name]"
+    <div
+      class="attribute-expression"
       @keydown.delete.stop
       @keydown.left.stop
-      @keydown.enter="refreshPreview"
+      @keydown.enter.prevent="refreshPreview"
       @blur="refreshPreview"
-    />
+      ref="codeRef"
+    ></div>
   </div>
 </template>

@@ -12,6 +12,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@codemirror/commands": "^6.2.4",
+    "@codemirror/state": "^6.2.1",
+    "@codemirror/view": "^6.12.0",
     "p5": "^1.6.0",
     "vue": "^3.2.47"
   },
