@@ -1,0 +1,61 @@
+@precedence  {
+    primary @left, mult @left, add @left, compare @left, equal @left, logic @left
+}
+
+@top Program { expression }
+
+expression {
+   Number |
+   Property |
+   Member |
+   Boolean |
+   AdditiveExpression |
+   MultiplicativeExpression |
+   Not |
+   ComparisonExpression |
+   EqualityExpression |
+   String |
+   LogicalExpression |
+   Until
+}
+
+AdditiveExpression {
+    expression !add AdditiveOperator expression
+}
+
+MultiplicativeExpression {
+    expression !mult MultiplicativeOperator expression
+}
+
+ComparisonExpression {
+    expression !compare ComparisonOperator expression
+}
+
+EqualityExpression {
+    expression !equal EqualityOperator expression
+}
+
+LogicalExpression {
+    expression !logic LogicalOperator expression
+}
+
+@tokens {
+    AdditiveOperator { "+" | "-"}
+    MultiplicativeOperator { "*" | "/" | "%" }
+    ComparisonOperator { "is "? ("less than" | "greater than" | "at least" | "no more than") }
+    EqualityOperator {("is" | "is not") }
+    LogicalOperator { "and" | "or" }
+    Number { @digit+"."?@digit+? }
+    Boolean { "true"|"false" }
+    Not { "not" }
+    Until { "until" }
+    Member { "."@asciiLetter$[a-zA-Z0-9_]* }
+    Property { @asciiLetter$[a-zA-Z0-9_]* }
+    String { ";"(![;]|"\;")*";" }
+    Space { $[ \t\n\r]+ }
+    @precedence {Until, Not, Boolean, ComparisonOperator, EqualityOperator, LogicalOperator, Property}
+}
+
+@skip { Space }
+
+@detectDelim

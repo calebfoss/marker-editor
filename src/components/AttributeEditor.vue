@@ -2,6 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { EditorState } from '@codemirror/state'
 import { EditorView, ViewUpdate } from '@codemirror/view'
+import { markerLanguageSupport } from '@/lang/markerLang'
+import { markerSyntaxHighlighting } from '@/lang/syntaxHighlighting'
 
 const { name, allAttributes } = defineProps<{
   name: string
@@ -15,7 +17,9 @@ const state = EditorState.create({
   extensions: [
     EditorView.updateListener.of(
       (update: ViewUpdate) => (allAttributes[name] = update.state.doc.toString())
-    )
+    ),
+    markerLanguageSupport,
+    markerSyntaxHighlighting
   ]
 })
 
