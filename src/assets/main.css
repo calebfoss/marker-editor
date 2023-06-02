@@ -116,6 +116,10 @@ h1 {
   outline: none;
 }
 
+.cm-editor .cm-content {
+  caret-color: white;
+}
+
 .element-editor .description label {
   display: block;
 }
