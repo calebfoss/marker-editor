@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import manifest from '../custom-elements.json'
-import { createApp, type App, provide, reactive, ref } from 'vue'
+import { createApp, type App, provide, reactive, ref, watchEffect } from 'vue'
 import ElementEditor from './ElementEditor.vue'
 import SketchPreview from './SketchPreview.vue'
 import MenuBar from './MenuBar.vue'
@@ -48,7 +48,7 @@ const baseElements: MarkerDocs = manifest.modules
   .sort(byName)
 provide('baseElements', baseElements)
 
-const rootElement: MarkerElement = reactive({
+const defaultRoot = {
   tag: 'p-sketch',
   key: generateKey(),
   attributes: {},
@@ -62,7 +62,35 @@ const rootElement: MarkerElement = reactive({
     }
   ],
   description: ''
-})
+}
+
+const isElement = (obj: any) =>
+  Array.isArray(obj.children) &&
+  obj.children.every((child: any) => isElement(child)) &&
+  Object.entries(obj.attributes).every(
+    ([attrName, attrValue]) => typeof attrName === 'string' && typeof attrValue === 'string'
+  ) &&
+  typeof obj.tag === 'string' &&
+  typeof obj.key === 'string' &&
+  typeof obj.description === 'string'
+const hashToElement = (): MarkerElement => {
+  const { hash } = window.location
+  if (hash.length <= 1) return defaultRoot
+  try {
+    const parsedHash = JSON.parse(decodeURI(hash.slice(1)))
+    if (isElement(parsedHash)) {
+      return parsedHash
+    }
+    throw new Error()
+  } catch (err) {
+    alert(
+      'Something went wrong when loading the sketch. The link could be missing one or more characters at the end'
+    )
+    return defaultRoot
+  }
+}
+const rootElement: MarkerElement = reactive(hashToElement())
+watchEffect(() => (window.location.hash = JSON.stringify(rootElement)))
 
 const iframeRef = ref<HTMLIFrameElement | null>(null)
 const appRef = ref<App | null>(null)
