@@ -90,7 +90,7 @@ const hashToElement = (): MarkerElement => {
   }
 }
 const rootElement: MarkerElement = reactive(hashToElement())
-watchEffect(() => (window.location.hash = JSON.stringify(rootElement)))
+watchEffect(() => (window.location.hash = encodeURI(JSON.stringify(rootElement))))
 
 const iframeRef = ref<HTMLIFrameElement | null>(null)
 const appRef = ref<App | null>(null)
