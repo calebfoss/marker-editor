@@ -34,6 +34,15 @@ async function loadSketch(e: Event) {
   refreshPreview()
   inputElement.value = ''
 }
+
+function openPreview() {
+  const url = new URL(window.location.href)
+  url.searchParams.set('preview', 'true')
+  const link = document.createElement('a')
+  link.href = url.href
+  link.target = '_'
+  link.click()
+}
 </script>
 
 <template>
@@ -42,5 +51,6 @@ async function loadSketch(e: Event) {
     <button @click="downloadSketch">Download</button>
     <button type="button"><label for="file-select" style="cursor: pointer">Load</label></button
     ><input id="file-select" type="file" accept=".json" v-show="false" @change="loadSketch" />
+    <button @click="openPreview">Preview in New Window</button>
   </header>
 </template>

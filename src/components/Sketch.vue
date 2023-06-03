@@ -91,6 +91,7 @@ const hashToElement = (): MarkerElement => {
 }
 const rootElement: MarkerElement = reactive(hashToElement())
 watchEffect(() => (window.location.hash = encodeURI(JSON.stringify(rootElement))))
+const isPreview = new URL(window.location.href).searchParams.get('preview') === 'true'
 
 const iframeRef = ref<HTMLIFrameElement | null>(null)
 const appRef = ref<App | null>(null)
@@ -149,23 +150,28 @@ function resizeEditor(e: MouseEvent) {
 </script>
 
 <template>
-  <MenuBar
-    :generate-key="generateKey"
-    :root-element="rootElement"
-    :refresh-preview="refreshPreview"
-  ></MenuBar>
-  <section id="sketch-editor" ref="editorRef">
-    <ElementEditor
-      :element="rootElement"
-      :inherited-attributes="[]"
-      :refresh-preview="refreshPreview"
-      :generate-key="generateKey"
-      class="root-element"
-    ></ElementEditor>
-  </section>
-  <span class="resize-bar" @mousedown="startResizing"></span>
-  <section id="preview">
+  <section v-if="isPreview" id="preview" style="height: 100vh">
     <iframe src="preview.html" @load="mountPreview" ref="iframeRef"></iframe>
-    <button @click="refreshPreview">Reload</button>
   </section>
+  <div id="ide" v-else>
+    <MenuBar
+      :generate-key="generateKey"
+      :root-element="rootElement"
+      :refresh-preview="refreshPreview"
+    ></MenuBar>
+    <section id="sketch-editor" ref="editorRef">
+      <ElementEditor
+        :element="rootElement"
+        :inherited-attributes="[]"
+        :refresh-preview="refreshPreview"
+        :generate-key="generateKey"
+        class="root-element"
+      ></ElementEditor>
+    </section>
+    <span class="resize-bar" @mousedown="startResizing"></span>
+    <section id="preview">
+      <iframe src="preview.html" @load="mountPreview" ref="iframeRef"></iframe>
+      <button @click="refreshPreview">Reload</button>
+    </section>
+  </div>
 </template>

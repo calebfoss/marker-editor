@@ -6,6 +6,10 @@ body {
 }
 
 #app {
+  height: 100%;
+}
+
+#ide {
   display: grid;
   grid-template-rows: 1fr 20fr;
   grid-template-columns: auto 1em 1fr;
