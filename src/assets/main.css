@@ -89,18 +89,20 @@ h1 {
 .attributes-editor {
   display: grid;
   margin-bottom: 20px;
+  grid-template-columns: 1fr 4fr;
 }
 
 .attribute-editor {
   display: grid;
-  grid-auto-flow: column;
-
+  grid-template-columns: subgrid;
+  grid-column: 1 / span 2;
+  justify-items: start;
+  width: 100%;
 }
 
 .attribute-editor:focus {
   border-style: dashed;
 }
-
 
 .attribute-editor label {
   margin-right: 10px;
@@ -109,12 +111,20 @@ h1 {
 .attribute-editor .attribute-expression {
   justify-self: right;
   min-width: 40ch;
+  width: min(100%, 60ch);
+  overflow: hidden;
   font-family: monospace;
+  grid-column: 3;
 }
 
 .attribute-editor .attribute-expression :focus {
   border-style: dashed;
   outline: none;
+}
+
+.cm-editor {
+  overflow: hidden;
+  width: 100%;
 }
 
 .cm-editor .cm-content {
