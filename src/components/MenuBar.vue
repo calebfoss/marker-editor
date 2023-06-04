@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
+
 const { generateKey, rootElement, refreshPreview } = defineProps<{
   generateKey: () => string
   rootElement: MarkerElement
@@ -43,14 +45,23 @@ function openPreview() {
   link.target = '_'
   link.click()
 }
+
+const hamburgerOpen = ref(false)
+const toggleHamburger = () => (hamburgerOpen.value = !hamburgerOpen.value)
 </script>
 
 <template>
   <header id="menu-bar">
     <h1>p5 Marker Editor</h1>
+    <button style="background: none; height: 100%" @click="toggleHamburger">
+      <img v-if="hamburgerOpen" src="../assets/x.svg" width="30" height="30" />
+      <img v-else src="../assets/hamburger.svg" width="30" height="30" />
+    </button>
+  </header>
+  <nav :style="{ translate: `0% ${hamburgerOpen ? 0 : -100}%` }">
     <button @click="downloadSketch">Download</button>
     <button type="button"><label for="file-select" style="cursor: pointer">Load</label></button
     ><input id="file-select" type="file" accept=".json" v-show="false" @change="loadSketch" />
     <button @click="openPreview">Preview in New Window</button>
-  </header>
+  </nav>
 </template>

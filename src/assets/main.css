@@ -10,24 +10,38 @@ body {
 }
 
 #ide {
-  display: grid;
-  grid-template-rows: 1fr 20fr;
-  grid-template-columns: auto 1em 1fr;
   height: 100%;
   overflow-x: hidden;
 }
 
 #menu-bar {
+  height: 50px;
+  background: #0f0f0f;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   gap: 30px;
-  grid-column-start: 1;
-  grid-column-end: -1;
-  padding: 10px
+  padding: 10px;
+  overflow: hidden;
+  z-index: 2;
 }
 
 h1 {
   font-size: 1rem;
+}
+
+nav {
+  position: absolute;
+  width: 100%;
+  transition: translate 0.5s;
+  z-index: 1;
+}
+
+nav button {
+  display: block;
+  border-radius: 0px;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
 }
 
 .fold-toggle {
@@ -45,10 +59,9 @@ h1 {
 }
 
 #preview {
+  height: 400px;
   display: flex;
   flex-direction: column;
-  grid-row: 2;
-  grid-column: 3;
   width: 100%;
 }
 
@@ -61,13 +74,13 @@ h1 {
 #sketch-editor {
   width: 100%;
   overflow-y: auto;
-  grid-row: 2;
 }
 
 .element-editor {
+  width: 80vw;
+  padding: 5px 5px 5px 10px;
   border: rgb(190, 190, 190) solid 4px;
   background: var(--color-background);
-  padding: 20px 2px 20px 20px;
   border-radius: 20px;
 }
 
@@ -85,23 +98,8 @@ h1 {
 }
 
 .element-editor .children {
-  margin-left: 40px;
   display: grid;
   justify-items: start;
-}
-
-.attributes-editor {
-  display: grid;
-  margin-bottom: 20px;
-  grid-template-columns: 1fr 4fr;
-}
-
-.attribute-editor {
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-column: 1 / span 2;
-  justify-items: start;
-  width: 100%;
 }
 
 .attribute-editor:focus {
@@ -114,11 +112,9 @@ h1 {
 
 .attribute-editor .attribute-expression {
   justify-self: right;
-  min-width: 40ch;
-  width: min(100%, 60ch);
   overflow: hidden;
   font-family: monospace;
-  grid-column: 3;
+  grid-column: 1;
 }
 
 .attribute-editor .attribute-expression :focus {
@@ -128,7 +124,6 @@ h1 {
 
 .cm-editor {
   overflow: hidden;
-  width: 100%;
 }
 
 .cm-editor .cm-content {
@@ -149,8 +144,6 @@ h1 {
 .resize-bar {
   display: block;
   cursor: e-resize;
-  grid-row: 2;
-  grid-column: 2;
 }
 
 input,
@@ -173,4 +166,66 @@ option {
 
 .cm-tooltip-autocomplete ul {
   background: black;
+}
+
+@media screen and (min-width: 480px) {
+  #ide {
+    display: grid;
+    grid-template-rows: 50px 400px 1fr;
+    grid-template-rows: 1fr 20fr;
+    grid-template-columns: auto 1em 1fr;
+  }
+
+  #menu-bar {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+
+  nav {
+    grid-row: 2;
+  }
+
+  #preview {
+    height: 100%;
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+  .resize-bar {
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  #sketch-editor {
+    grid-row: 2;
+  }
+
+  .element-editor {
+    padding: 20px 2px 20px 20px;
+    width: 60ch;
+  }
+
+  .attributes-editor {
+    display: grid;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr 2fr;
+    width: 100%;
+  }
+
+  .attribute-editor {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / span 2;
+    justify-items: start;
+    width: 100%;
+  }
+
+  .attribute-editor label {
+    grid-column: 1;
+  }
+
+  .attribute-editor .attribute-expression {
+    grid-column: 2;
+    width: 40ch;
+  }
 }

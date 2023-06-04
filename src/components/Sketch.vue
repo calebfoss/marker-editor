@@ -159,6 +159,10 @@ function resizeEditor(e: MouseEvent) {
       :root-element="rootElement"
       :refresh-preview="refreshPreview"
     ></MenuBar>
+    <section id="preview">
+      <iframe src="preview.html" @load="mountPreview" ref="iframeRef"></iframe>
+      <button @click="refreshPreview">Reload</button>
+    </section>
     <section id="sketch-editor" ref="editorRef">
       <ElementEditor
         :element="rootElement"
@@ -169,9 +173,5 @@ function resizeEditor(e: MouseEvent) {
       ></ElementEditor>
     </section>
     <span class="resize-bar" @mousedown="startResizing"></span>
-    <section id="preview">
-      <iframe src="preview.html" @load="mountPreview" ref="iframeRef"></iframe>
-      <button @click="refreshPreview">Reload</button>
-    </section>
   </div>
 </template>
