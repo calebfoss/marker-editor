@@ -43,6 +43,10 @@ export default {
         <td>down arrow</td>
       </tr>
       <tr>
+        <td>move child to sibling</td>
+        <td>left arrow</td>
+      </tr>
+      <tr>
         <td>parent child to above sibling</td>
         <td>shift + up arrow</td>
       </tr>
