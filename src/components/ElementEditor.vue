@@ -116,8 +116,7 @@ function updateCanvasTag() {
 }
 
 const headingName = computed(() => {
-  const elementName =
-    element.tag.slice(-2) === `3d` ? element.tag.slice(2, -3) : element.tag.slice(2)
+  const elementName = element.tag.slice(2)
   if ('name' in element.attributes === false) return elementName
   const nameStrippedOfSemicolons = element.attributes.name
     ?.match(/;?([^;]*);?/)

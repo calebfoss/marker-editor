@@ -48,11 +48,7 @@ const filteredOptions = computed(() =>
         :value="docElement.name"
         @click.prevent="optionClicked"
       >
-        {{
-          docElement.name.slice(-2) === `3d`
-            ? docElement.name.slice(2, -3)
-            : docElement.name.slice(2)
-        }}
+        {{ docElement.name.slice(2) }}
       </option>
     </select>
     <input type="submit" value="+" />
