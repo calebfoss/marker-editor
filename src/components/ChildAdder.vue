@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, inject, ref, type Ref } from 'vue'
+import { computed, inject, ref } from 'vue'
+import { primitives3d } from './Primitives3D'
 const { addChild, canvas } = defineProps<{
   addChild: (tag: string) => void
   canvas?: MarkerElement
@@ -27,7 +28,6 @@ function optionClicked(e: Event) {
   toggleSelect()
 }
 
-const primitives3d = ['plane', 'box', 'sphere', 'cylinder', 'cone', 'ellipsoid', 'torus', 'model']
 const filteredOptions = computed(() =>
   baseElements.concat(...customElements).filter((docElement) => {
     if (typeof canvas === 'undefined') return true

@@ -3,6 +3,7 @@ import { computed, inject, ref } from 'vue'
 import AttributeAdder from './AttributeAdder.vue'
 import AttributeEditor from './AttributeEditor.vue'
 import ChildAdder from './ChildAdder.vue'
+import { primitives3d } from './Primitives3D'
 
 const { element, refreshPreview, generateKey, inheritedAttributes, parentElement } = defineProps<{
   element: MarkerElement
@@ -109,8 +110,56 @@ function removeAttribute(name: string) {
 const isCanvas3D = ref(element.tag === 'p-canvas-3d')
 const isCanvas = computed(() => isCanvas3D.value || element.tag === 'p-canvas')
 
+const convertTo3D = (parEl: MarkerElement | null, el: MarkerElement) => {
+  const el3D = baseElements.find((docEl) => docEl.name === el.tag + '-3d')
+  if (typeof el3D !== 'undefined') el.tag = el3D.name
+  else if (!primitives3d.includes(el.tag.slice(2))) {
+    parEl?.children.slice(parEl.children.indexOf(el), 1)
+    return
+  }
+  for (const child of el.children) {
+    convertTo3D(el, child)
+  }
+}
+const convertTo2D = (parEl: MarkerElement | null, el: MarkerElement) => {
+  if (primitives3d.includes(el.tag.slice(2))) {
+    parEl?.children.splice(parEl.children.indexOf(el), 1)
+    return
+  }
+  if (el.tag.slice(0, -3) === '-3d') {
+    const el3D = baseElements.find((docEl) => docEl.name === el.tag.slice(0, -3))
+    if (typeof el3D === 'undefined') {
+      parEl?.children.splice(parEl.children.indexOf(el), 1)
+      return
+    }
+    el.tag = el3D.name
+  }
+  for (const child of el.children) {
+    convertTo2D(el, child)
+  }
+}
+
 function updateCanvasTag() {
   const is3D = isCanvas3D.value
+  if (is3D) {
+    if (element.children.length) {
+      const convert = confirm(
+        'Switching to a 3D canvas requires the children of the canvas to be 3D elements. ' +
+          'Clicking okay will attempt to convert all elements to 3D and remove any elements that cannot be converted.'
+      )
+      if (!convert) return
+      convertTo3D(null, element)
+    }
+  } else {
+    if (element.children.length) {
+      const convert = confirm(
+        'Switching to a 2D canvas requires the children of the canvas to be 2D elements. ' +
+          'Clicking okay will attempt to convert all elements to 2D and remove any elements that cannot be converted.'
+      )
+      if (!convert) return
+      convertTo2D(null, element)
+    }
+  }
   element.tag = is3D ? 'p-canvas-3d' : 'p-canvas'
   refreshPreview()
 }
