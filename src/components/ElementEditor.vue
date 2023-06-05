@@ -126,7 +126,7 @@ const convertTo2D = (parEl: MarkerElement | null, el: MarkerElement) => {
     parEl?.children.splice(parEl.children.indexOf(el), 1)
     return
   }
-  if (el.tag.slice(0, -3) === '-3d') {
+  if (el.tag.slice(-3) === '-3d') {
     const el3D = baseElements.find((docEl) => docEl.name === el.tag.slice(0, -3))
     if (typeof el3D === 'undefined') {
       parEl?.children.splice(parEl.children.indexOf(el), 1)
