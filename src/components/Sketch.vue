@@ -4,6 +4,7 @@ import { createApp, type App, provide, reactive, ref, watchEffect } from 'vue'
 import ElementEditor from './ElementEditor.vue'
 import SketchPreview from './SketchPreview.vue'
 import MenuBar from './MenuBar.vue'
+import Help from './Help.vue'
 
 const byName = (a: { name: string }, b: { name: string }) => {
   if (a.name < b.name) return -1
@@ -147,6 +148,9 @@ function resizeEditor(e: MouseEvent) {
   editor.style.width = `${x}px`
   document.getSelection()?.empty()
 }
+
+const helpRef = ref<any>(null)
+const showHelp = () => helpRef.value.showHelp()
 </script>
 
 <template>
@@ -158,6 +162,7 @@ function resizeEditor(e: MouseEvent) {
       :generate-key="generateKey"
       :root-element="rootElement"
       :refresh-preview="refreshPreview"
+      :show-help="showHelp"
     ></MenuBar>
     <section id="preview">
       <iframe src="preview.html" @load="mountPreview" ref="iframeRef"></iframe>
@@ -173,5 +178,6 @@ function resizeEditor(e: MouseEvent) {
       ></ElementEditor>
     </section>
     <span class="resize-bar" @mousedown="startResizing"></span>
+    <Help ref="helpRef" />
   </div>
 </template>

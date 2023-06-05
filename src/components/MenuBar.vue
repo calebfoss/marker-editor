@@ -5,6 +5,7 @@ const { generateKey, rootElement, refreshPreview } = defineProps<{
   generateKey: () => string
   rootElement: MarkerElement
   refreshPreview: () => void
+  showHelp: () => void
 }>()
 
 function downloadSketch(e: Event) {
@@ -58,10 +59,11 @@ const toggleHamburger = () => (hamburgerOpen.value = !hamburgerOpen.value)
       <img v-else src="../assets/hamburger.svg" width="30" height="30" />
     </button>
   </header>
-  <nav :style="{ translate: `0% ${hamburgerOpen ? 0 : -100}%` }">
+  <nav :style="{ translate: `0% ${hamburgerOpen ? 0 : -100}%` }" @click="toggleHamburger">
     <button @click="downloadSketch">Download</button>
     <button type="button"><label for="file-select" style="cursor: pointer">Load</label></button
     ><input id="file-select" type="file" accept=".json" v-show="false" @change="loadSketch" />
     <button @click="openPreview">Preview in New Window</button>
+    <button @click="showHelp">Help</button>
   </nav>
 </template>

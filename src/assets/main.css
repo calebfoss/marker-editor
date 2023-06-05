@@ -168,6 +168,21 @@ option {
   background: black;
 }
 
+dialog {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: min(100%, 60ch);
+}
+
+dialog a {
+  display: block;
+}
+
+dialog table {
+  width: 100%;
+}
+
 @media screen and (min-width: 480px) {
   #ide {
     display: grid;
