@@ -54,7 +54,9 @@ onMounted(() => {
       class="attribute-expression"
       @keydown.delete.stop
       @keydown.left.stop
-      @keydown.enter.prevent="refreshPreview"
+      @keydown.up.stop
+      @keydown.down.stop
+      @keydown.enter.ctrl.prevent="refreshPreview"
       @blur="refreshPreview"
       ref="codeRef"
     ></div>
