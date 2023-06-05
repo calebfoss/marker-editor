@@ -152,6 +152,7 @@ const headingName = computed(() => {
           :all-attributes="allAttributes"
           :remove="removeAttribute"
           :refresh-preview="refreshPreview"
+          :key="name"
         >
         </AttributeEditor>
       </div>

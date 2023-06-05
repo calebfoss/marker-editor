@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { EditorState } from '@codemirror/state'
 import { EditorView, ViewUpdate } from '@codemirror/view'
 import { autocompletion } from '@codemirror/autocomplete'
 import { markerScriptSupport } from '@/lang/markerLang'
 import { markerSyntaxHighlighting } from '@/lang/syntaxHighlighting'
 
-const { allAttributes, name, elementAttributes } = defineProps<{
+const { allAttributes, name, elementAttributes, refreshPreview } = defineProps<{
   name: string
   elementAttributes: MarkerAttributes
   allAttributes: string[]
@@ -38,6 +38,7 @@ onMounted(() => {
     parent: codeRef.value,
     state
   })
+  view.contentDOM.addEventListener('blur', refreshPreview)
 })
 </script>
 
