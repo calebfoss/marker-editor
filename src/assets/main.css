@@ -16,12 +16,12 @@ body {
 
 #menu-bar {
   height: 50px;
-  background: #0f0f0f;
   display: flex;
   justify-content: space-between;
+  position: relative;
+  background: #0f0f0f;
   gap: 30px;
   padding: 10px;
-  overflow: hidden;
   z-index: 2;
 }
 
@@ -31,7 +31,7 @@ h1 {
 
 nav {
   position: absolute;
-  width: 100%;
+  right: 0;
   transition: translate 0.5s;
   z-index: 1;
 }
@@ -40,8 +40,13 @@ nav button {
   display: block;
   border-radius: 0px;
   width: 100%;
+  height: 100%;
   padding: 10px;
   text-align: left;
+}
+
+nav button:hover {
+  background-color: #3f3f3f;
 }
 
 .fold-toggle {
@@ -198,6 +203,15 @@ dialog table {
 
   nav {
     grid-row: 2;
+    position: initial;
+    display: flex;
+    width: 100%;
+    vertical-align: middle;
+  }
+
+  nav button {
+    text-align: center;
+    padding: 0;
   }
 
   #preview {
