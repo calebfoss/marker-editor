@@ -53,7 +53,10 @@ const toggleHamburger = () => (hamburgerOpen.value = !hamburgerOpen.value)
 
 <template>
   <header id="menu-bar">
-    <h1>p5 Marker Editor</h1>
+    <div style="display: flex; width: 100%">
+      <img style="height: 100%" src="../assets/logo.svg" />
+      <h1>p5 Marker Editor</h1>
+    </div>
     <button style="background: none; height: 100%" @click="toggleHamburger">
       <img v-if="hamburgerOpen" src="../assets/x.svg" width="30" height="30" />
       <img v-else src="../assets/hamburger.svg" width="30" height="30" />
