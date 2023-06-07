@@ -5,6 +5,7 @@ const { generateKey, rootElement, refreshPreview } = defineProps<{
   refreshPreview: () => void
   showHelp: () => void
   toggleHamburger: () => void
+  resetSketch: () => void
 }>()
 
 function downloadSketch(e: Event) {
@@ -48,6 +49,7 @@ function openPreview() {
 </script>
 <template>
   <nav @click="toggleHamburger">
+    <button @click="resetSketch">Reset</button>
     <button @click="downloadSketch">Download</button>
     <button type="button"><label for="file-select" style="cursor: pointer">Load</label></button
     ><input id="file-select" type="file" accept=".json" v-show="false" @change="loadSketch" />

@@ -7,6 +7,7 @@ defineProps<{
   rootElement: MarkerElement
   refreshPreview: () => void
   showHelp: () => void
+  resetSketch: () => void
 }>()
 
 const hamburgerOpen = ref(false)
@@ -38,6 +39,7 @@ window.addEventListener('resize', () => {
       :toggleHamburger="toggleHamburger"
       :hamburgerOpen="hamburgerOpen"
       :showHelp="showHelp"
+      :reset-sketch="resetSketch"
     ></Menu>
   </header>
   <Menu
@@ -48,5 +50,6 @@ window.addEventListener('resize', () => {
     :refreshPreview="refreshPreview"
     :toggleHamburger="toggleHamburger"
     :showHelp="showHelp"
+    :reset-sketch="resetSketch"
   ></Menu>
 </template>

@@ -151,6 +151,19 @@ function resizeEditor(e: MouseEvent) {
 
 const helpRef = ref<any>(null)
 const showHelp = () => helpRef.value.showHelp()
+
+const matchElements = (a: MarkerElement, b: MarkerElement): boolean =>
+  a.tag === b.tag &&
+  Object.entries(a.attributes).every(([nameA, valA]) => b.attributes[nameA] === valA) &&
+  a.children.length === b.children.length &&
+  a.children.every((childA, index) => matchElements(childA, b.children[index]))
+const resetSketch = () => {
+  if (
+    matchElements(rootElement, defaultRoot) ||
+    confirm('This will reset the sketch to the default template.')
+  )
+    Object.assign(rootElement, defaultRoot)
+}
 </script>
 
 <template>
@@ -163,6 +176,7 @@ const showHelp = () => helpRef.value.showHelp()
       :root-element="rootElement"
       :refresh-preview="refreshPreview"
       :show-help="showHelp"
+      :reset-sketch="resetSketch"
     ></MenuBar>
     <section id="preview">
       <iframe src="preview.html" @load="mountPreview" ref="iframeRef"></iframe>
