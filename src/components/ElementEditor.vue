@@ -4,6 +4,7 @@ import AttributeAdder from './AttributeAdder.vue'
 import AttributeEditor from './AttributeEditor.vue'
 import ChildAdder from './ChildAdder.vue'
 import { primitives3d } from './Primitives3D'
+import ArrowButton from './ArrowButton.vue'
 
 const { element, refreshPreview, generateKey, inheritedAttributes, parentElement } = defineProps<{
   element: MarkerElement
@@ -12,6 +13,12 @@ const { element, refreshPreview, generateKey, inheritedAttributes, parentElement
   generateKey: () => string
   parentElement?: MarkerElement
   canvas?: MarkerElement
+  unparent?: () => void
+  moveUp?: () => void
+  parentUp?: () => void
+  moveDown?: () => void
+  parentDown?: () => void
+  deleteSelf?: () => void
 }>()
 
 const baseElements = inject<MarkerDocs>('baseElements') as MarkerDocs
@@ -24,11 +31,10 @@ const standardAttributes = ['custom'].concat(
 )
 const allAttributes = Array.from(new Set(inheritedAttributes.concat(standardAttributes)))
 
-const folded = ref(false)
-
-function toggleFolded() {
-  folded.value = !folded.value
-}
+const hideEditor = ref(false)
+const toggleEditor = () => (hideEditor.value = !hideEditor.value)
+const hideChildren = ref(false)
+const toggleChildren = () => (hideChildren.value = !hideChildren.value)
 
 function addChild(tag: string) {
   const child: MarkerElement = {
@@ -176,14 +182,29 @@ const headingName = computed(() => {
 </script>
 
 <template>
-  <div class="element-editor" :tabindex="0">
+  <div
+    class="element-editor"
+    :tabindex="0"
+    @keydown.delete.stop="deleteSelf"
+    @keydown.up.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentUp?.() : moveUp?.()"
+    @keydown.down.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentDown?.() : moveDown?.()"
+    @keydown.left.stop.prevent="unparent"
+  >
     <header>
       <h2>
         {{ headingName }}
       </h2>
-      <button :class="{ 'fold-toggle': true, folded: folded }" @click="toggleFolded"></button>
+      <div style="display: flex; justify-content: space-between; gap: 10px">
+        <ArrowButton v-if="unparent" :onClick="unparent" :rotation="180" />
+        <ArrowButton v-if="moveUp" :on-click="moveUp" :rotation="270" />
+        <ArrowButton v-if="parentUp" :on-click="parentUp" :rotation="315" />
+        <ArrowButton v-if="parentDown" :on-click="parentDown" :rotation="45" />
+        <ArrowButton v-if="moveDown" :on-click="moveDown" :rotation="90" />
+        <button class="symbol-button" v-if="deleteSelf" @click="deleteSelf">X</button>
+      </div>
     </header>
-    <div v-show="!folded">
+    <button :onClick="toggleEditor">{{ hideEditor ? 'Edit' : 'Minimize' }}</button>
+    <div v-show="!hideEditor">
       <div v-if="isCanvas">
         <input
           style="margin-right: 10px"
@@ -218,24 +239,35 @@ const headingName = computed(() => {
           @keydown.backspace.stop
         ></textarea>
       </div>
-      <div class="children">
-        <ElementEditor
-          v-for="(child, index) in element.children"
-          :element="child"
-          :inherited-attributes="allAttributes"
-          :refresh-preview="refreshPreview"
-          :key="child.key"
-          :generate-key="generateKey"
-          :parent-element="element"
-          :canvas="isCanvas ? element : canvas"
-          @keydown.delete.stop="() => removeChild(index)"
-          @keydown.up.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentChildUp(index) : moveChildUp(index)"
-          @keydown.down.stop.prevent="(e: KeyboardEvent) => e.shiftKey ? parentChildDown(index) : moveChildDown(index)"
-          @keydown.left.stop.prevent="() => childToSibling(index)"
-        >
-        </ElementEditor>
-      </div>
-      <ChildAdder :add-child="addChild" :canvas="isCanvas ? element : canvas"></ChildAdder>
     </div>
+    <button v-show="element.children.length" @click="toggleChildren">
+      {{ hideChildren ? 'Show children' : 'Hide children' }}
+    </button>
+    <div v-show="!hideChildren" class="children">
+      <ElementEditor
+        v-for="(child, index) in element.children"
+        :element="child"
+        :inherited-attributes="allAttributes"
+        :refresh-preview="refreshPreview"
+        :key="child.key"
+        :generate-key="generateKey"
+        :parent-element="element"
+        :canvas="isCanvas ? element : canvas"
+        :delete-self="() => removeChild(index)"
+        :move-up="index > 0 ? () => moveChildUp(index) : undefined"
+        :parent-up="index > 0 ? () => parentChildUp(index) : undefined"
+        :move-down="index < element.children.length - 1 ? () => moveChildDown(index) : undefined"
+        :parent-down="
+          index < element.children.length - 1 ? () => parentChildDown(index) : undefined
+        "
+        :unparent="parentElement ? () => childToSibling(index) : undefined"
+      >
+      </ElementEditor>
+    </div>
+    <ChildAdder
+      v-show="!hideEditor"
+      :add-child="addChild"
+      :canvas="isCanvas ? element : canvas"
+    ></ChildAdder>
   </div>
 </template>

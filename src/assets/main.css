@@ -46,21 +46,20 @@ nav button {
 }
 
 nav button:hover {
-  background-color: #3f3f3f;
+  background: #3f3f3f;
 }
 
-.fold-toggle {
-  width: 1rem;
-  height: 1rem;
-  background: var(--color-text);
-  cursor: pointer;
-  border-radius: 0;
-  margin-right: 10px;
-  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+.arrow {
+  width: 16px;
+  height: 12px;
+  border-style: solid;
+  border-width: 6px 0px 6px 16px;
+  border-color: transparent transparent transparent var(--color-text);
 }
 
-.folded {
-  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+.symbol-button {
+  background: none;
+  font-size: 20px;
 }
 
 #preview {
