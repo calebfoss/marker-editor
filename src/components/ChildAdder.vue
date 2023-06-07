@@ -40,17 +40,19 @@ const filteredOptions = computed(() =>
 )
 </script>
 <template>
-  <button v-show="!adding" @click="toggleSelect">Add child</button>
-  <form v-show="adding" @submit.prevent="onSubmit">
-    <select name="select-tag">
-      <option
-        v-for="docElement in filteredOptions"
-        :value="docElement.name"
-        @click.prevent="optionClicked"
-      >
-        {{ docElement.name.slice(2) }}
-      </option>
-    </select>
-    <input type="submit" value="+" />
-  </form>
+  <div>
+    <button v-show="!adding" @click="toggleSelect">Add child</button>
+    <form v-show="adding" @submit.prevent="onSubmit">
+      <select name="select-tag">
+        <option
+          v-for="docElement in filteredOptions"
+          :value="docElement.name"
+          @click.prevent="optionClicked"
+        >
+          {{ docElement.name.slice(2) }}
+        </option>
+      </select>
+      <input type="submit" value="+" />
+    </form>
+  </div>
 </template>
