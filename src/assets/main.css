@@ -187,7 +187,7 @@ dialog table {
   width: 100%;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: calc(70ch + 400px)) {
   #ide {
     display: grid;
     grid-template-rows: 50px 400px 1fr;
@@ -226,6 +226,7 @@ dialog table {
 
   #sketch-editor {
     grid-row: 2;
+    width: 70ch;
   }
 
   .element-editor {

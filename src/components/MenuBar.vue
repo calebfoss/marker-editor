@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import Menu from './Menu.vue'
 
 defineProps<{
@@ -12,8 +12,12 @@ defineProps<{
 const hamburgerOpen = ref(false)
 const toggleHamburger = () => (hamburgerOpen.value = !hamburgerOpen.value)
 
-const mobileDimension = ref(window.innerWidth < 480)
-window.addEventListener('resize', () => (mobileDimension.value = window.innerWidth < 480))
+const checkMobileDimension = () => window.matchMedia('(max-width: calc(70ch + 400px))').matches
+const mobileDimension = ref(checkMobileDimension())
+window.addEventListener('resize', () => {
+  mobileDimension.value = checkMobileDimension()
+  console.log(mobileDimension.value)
+})
 </script>
 
 <template>
