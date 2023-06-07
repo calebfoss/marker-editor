@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { inject, nextTick, onMounted, ref } from 'vue'
 import { EditorState } from '@codemirror/state'
 import { EditorView, ViewUpdate } from '@codemirror/view'
 import { autocompletion } from '@codemirror/autocomplete'
@@ -13,6 +13,9 @@ const { allAttributes, name, elementAttributes, refreshPreview } = defineProps<{
   remove: (name: string) => void
   refreshPreview: () => void
 }>()
+
+const generateKey = inject('generateKey') as () => string
+const id = generateKey()
 
 const state = EditorState.create({
   doc: elementAttributes[name],
@@ -31,15 +34,26 @@ function focusNewAttribute(e: any) {
 }
 
 const codeRef = ref<HTMLDivElement | null>(null)
+const viewRef = ref<EditorView | null>(null)
 
-onMounted(() => {
+onMounted(async () => {
   if (codeRef.value === null) return
   const view = new EditorView({
     parent: codeRef.value,
     state
   })
+  viewRef.value = view
   view.contentDOM.addEventListener('blur', refreshPreview)
+  await nextTick()
+  view.contentDOM.focus()
 })
+
+//  Currently unused - focused on code with cursor at the end
+function goToCode() {
+  const view = viewRef.value as EditorView
+  view.focus()
+  view.dispatch({ selection: { anchor: view.state.doc.length, head: view.state.doc.length } })
+}
 </script>
 
 <template>
@@ -49,8 +63,10 @@ onMounted(() => {
     @keydown.delete.stop="(e) => remove(name)"
     @vue:mounted="focusNewAttribute"
   >
-    <label>{{ name }}</label>
+    <button style="height: fit-content" @click="(e) => remove(name)">X</button>
+    <label :for="id">{{ name }}</label>
     <div
+      :id="id"
       class="attribute-expression"
       @keydown.delete.stop
       @keydown.left.stop

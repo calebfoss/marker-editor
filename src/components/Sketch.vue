@@ -14,9 +14,10 @@ const byName = (a: { name: string }, b: { name: string }) => {
 
 const keyGenerator = (function* () {
   let id = 0
-  while (true) yield `element_${id++}`
+  while (true) yield (id++).toString()
 })()
 const generateKey = () => keyGenerator.next().value
+provide('generateKey', generateKey)
 
 const baseElements: MarkerDocs = manifest.modules
   .reduce(

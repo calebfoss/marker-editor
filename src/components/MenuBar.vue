@@ -15,10 +15,7 @@ const toggleHamburger = () => (hamburgerOpen.value = !hamburgerOpen.value)
 
 const checkMobileDimension = () => window.matchMedia('(max-width: calc(70ch + 400px))').matches
 const mobileDimension = ref(checkMobileDimension())
-window.addEventListener('resize', () => {
-  mobileDimension.value = checkMobileDimension()
-  console.log(mobileDimension.value)
-})
+window.addEventListener('resize', () => (mobileDimension.value = checkMobileDimension()))
 </script>
 
 <template>

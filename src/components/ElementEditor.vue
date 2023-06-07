@@ -30,6 +30,9 @@ const standardAttributes = ['custom'].concat(
   typeof docElement === 'undefined' ? [] : docElement.attributes.map(({ name }) => name)
 )
 const allAttributes = Array.from(new Set(inheritedAttributes.concat(standardAttributes)))
+const parentAttributes = computed(() =>
+  typeof parentElement !== 'undefined' ? Object.keys(parentElement.attributes) : []
+)
 
 const hideEditor = ref(false)
 const toggleEditor = () => (hideEditor.value = !hideEditor.value)
@@ -96,17 +99,9 @@ function parentChildDown(index: number) {
   element.children[index].children.push(child)
 }
 
-function addAttribute(e: Event) {
-  const el = e.target as HTMLInputElement | HTMLFormElement
-  const form = el instanceof HTMLFormElement ? el : el.form
-  if (form === null) return
-  const formData = new FormData(form)
-  const name = formData.get('attribute-name')?.toString()
+function addAttribute(name: string) {
   if (typeof name === 'undefined' || name.length === 0) return
-  const key = name === 'custom' ? formData.get('attribute-custom')?.toString() : name
-  if (typeof key === 'undefined') return
-  element.attributes[key] = ''
-  form.reset()
+  element.attributes[name] = ''
 }
 
 function removeAttribute(name: string) {
@@ -229,6 +224,7 @@ const headingName = computed(() => {
         :element="element"
         :add-attribute="addAttribute"
         :standard-attributes="standardAttributes"
+        :parent-attributes="parentAttributes"
       ></AttributeAdder>
       <div class="description">
         <label>Description</label>
