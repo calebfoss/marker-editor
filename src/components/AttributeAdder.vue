@@ -61,11 +61,9 @@ const cmParentRef = ref<null | HTMLDivElement>(null)
 
 onMounted(() => {
   const cmParent = cmParentRef.value as HTMLDivElement
-
   const view = new EditorView({ parent: cmParent, state })
   view.contentDOM.id = cmId
   viewRef.value = view
-  view.contentDOM.addEventListener('blur', () => (adding.value = false))
 })
 </script>
 
@@ -76,10 +74,9 @@ onMounted(() => {
     class="attribute-adder"
     @submit.prevent="handleSubmit"
     @keydown.enter.ctrl="handleSubmit"
-    @blur="toggle"
   >
     <label for="cmId">Attribute name</label>
     <div ref="cmParentRef" class="attribute-name" @keydown.delete.stop></div>
-    <input type="submit" value="+" />
+    <input type="submit" value="+" style="cursor: pointer" />
   </form>
 </template>
