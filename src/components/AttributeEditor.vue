@@ -63,8 +63,10 @@ function goToCode() {
     @keydown.delete.stop="(e) => remove(name)"
     @vue:mounted="focusNewAttribute"
   >
-    <button style="height: fit-content" @click="(e) => remove(name)">X</button>
-    <label :for="id">{{ name }}</label>
+    <div class="attribute-label-container">
+      <label :for="id">{{ name }}</label>
+      <button style="height: fit-content" @click="(e) => remove(name)">X</button>
+    </div>
     <div
       :id="id"
       class="attribute-expression"
