@@ -44,8 +44,11 @@ onMounted(async () => {
   })
   viewRef.value = view
   view.contentDOM.addEventListener('blur', refreshPreview)
-  await nextTick()
-  view.contentDOM.focus()
+  //  If attribute doesn't have a value, focus on it
+  if (elementAttributes[name].length === 0) {
+    await nextTick()
+    view.contentDOM.focus()
+  }
 })
 
 //  Currently unused - focused on code with cursor at the end
