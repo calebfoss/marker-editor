@@ -17,14 +17,11 @@ const { allAttributes, name, elementAttributes, refreshPreview } = defineProps<{
 const generateKey = inject('generateKey') as () => string
 const id = generateKey()
 
-const escapeQuotes = (str: string) => str.replace(/"/g, '&quot;')
-const unescapeQuotes = (str: string) => str.replace(/&quot;/g, '"')
-
 const state = EditorState.create({
-  doc: unescapeQuotes(elementAttributes[name]),
+  doc: elementAttributes[name],
   extensions: [
     EditorView.updateListener.of(
-      (update: ViewUpdate) => (elementAttributes[name] = escapeQuotes(update.state.doc.toString()))
+      (update: ViewUpdate) => (elementAttributes[name] = update.state.doc.toString())
     ),
     markerScriptSupport(allAttributes),
     markerSyntaxHighlighting,
@@ -66,12 +63,12 @@ function goToCode() {
   <div
     class="attribute-editor"
     :tabindex="0"
-    @keydown.delete.stop="(e) => remove(name)"
+    @keydown.delete.stop="() => remove(name)"
     @vue:mounted="focusNewAttribute"
   >
     <div class="attribute-label-container">
       <label :for="id">{{ name }}</label>
-      <button style="height: fit-content" @click="(e) => remove(name)">X</button>
+      <button style="height: fit-content" @click="() => remove(name)">X</button>
     </div>
     <div
       :id="id"
