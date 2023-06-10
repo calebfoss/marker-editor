@@ -17,11 +17,14 @@ const { allAttributes, name, elementAttributes, refreshPreview } = defineProps<{
 const generateKey = inject('generateKey') as () => string
 const id = generateKey()
 
+const escapeQuotes = (str: string) => str.replace(/"/g, '&quot;')
+const unescapeQuotes = (str: string) => str.replace(/&quot;/g, '"')
+
 const state = EditorState.create({
-  doc: elementAttributes[name],
+  doc: unescapeQuotes(elementAttributes[name]),
   extensions: [
     EditorView.updateListener.of(
-      (update: ViewUpdate) => (elementAttributes[name] = update.state.doc.toString())
+      (update: ViewUpdate) => (elementAttributes[name] = escapeQuotes(update.state.doc.toString()))
     ),
     markerScriptSupport(allAttributes),
     markerSyntaxHighlighting,

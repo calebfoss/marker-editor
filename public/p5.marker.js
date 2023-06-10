@@ -1,10 +1,10 @@
-// p5-marker v0.2.1 Sat May 13 2023 https://github.com/calebfoss/p5-marker.git
+// p5-marker v0.2.1 Sat Jun 10 2023 https://github.com/calebfoss/p5-marker.git
 const $7a53813bc2528edd$var$upperCaseChar = /([A-Z])/g;
-const $7a53813bc2528edd$var$upperCaseCharAfterFirst = /(?<!^)[A-Z]/g;
+const $7a53813bc2528edd$var$upperCaseCharAfterFirst = /([^[A-Z]+)([A-Z])/g;
 //  js string replace 2nd param
-const $7a53813bc2528edd$var$prependMatch = (char)=>char + "$&";
-const $7a53813bc2528edd$export$f38e744fd7a17882 = (camelStr)=>camelStr.replace($7a53813bc2528edd$var$upperCaseCharAfterFirst, $7a53813bc2528edd$var$prependMatch("-")).toLowerCase();
-const $7a53813bc2528edd$export$e12f55f9c91df96a = (camelStr)=>camelStr.replace($7a53813bc2528edd$var$upperCaseCharAfterFirst, $7a53813bc2528edd$var$prependMatch("_")).toLowerCase();
+const $7a53813bc2528edd$var$insertBetweenFirstTwoGroups = (char)=>`$1${char}$2`;
+const $7a53813bc2528edd$export$f38e744fd7a17882 = (camelStr)=>camelStr.replace($7a53813bc2528edd$var$upperCaseCharAfterFirst, $7a53813bc2528edd$var$insertBetweenFirstTwoGroups("-")).toLowerCase();
+const $7a53813bc2528edd$export$e12f55f9c91df96a = (camelStr)=>camelStr.replace($7a53813bc2528edd$var$upperCaseCharAfterFirst, $7a53813bc2528edd$var$insertBetweenFirstTwoGroups("_")).toLowerCase();
 const $7a53813bc2528edd$export$fd546b5ffd1f6a92 = (kebabStr)=>kebabStr.replace(/-./g, (s)=>s[1].toUpperCase());
 const $7a53813bc2528edd$export$1e3da36a069282b8 = (pascalStr)=>pascalStr.slice(0, 1).toLowerCase() + pascalStr.slice(1);
 const $7a53813bc2528edd$export$b797531657428303 = (pascalStr)=>$7a53813bc2528edd$export$1e3da36a069282b8(pascalStr).replaceAll($7a53813bc2528edd$var$upperCaseChar, (c)=>"-" + c.toLowerCase());
@@ -738,10 +738,10 @@ const $2127f1fec3724162$export$19b172c586f937c9 = (str)=>{
             const propertyToken = $2127f1fec3724162$var$token($2127f1fec3724162$export$2b7f80a2c1376e05.property, start, end13, propertyMatch[0]);
             return getTokens(end13, tokens.concat(propertyToken));
         }
-        const stringMatch = strFromStart.match(/^;.*?(?<!\\);/);
+        const stringMatch = strFromStart.match(/^('|&quot;)((?:[^\\]|\\.)*)\1/);
         if (stringMatch) {
             const end14 = start + stringMatch[0].length;
-            const stringToken = $2127f1fec3724162$var$token($2127f1fec3724162$export$2b7f80a2c1376e05.string, start, end14, stringMatch[0].slice(1, -1).replace(/\\\;/g, ";"));
+            const stringToken = $2127f1fec3724162$var$token($2127f1fec3724162$export$2b7f80a2c1376e05.string, start, end14, stringMatch[2]);
             return getTokens(end14, tokens.concat(stringToken));
         }
         console.error(`Unexpected token: ${strFromStart}`);
@@ -3332,8 +3332,6 @@ const $f2731110a32ba8b7$export$6a6520d1fb36b10e = (baseClass)=>class extends bas
 
 
 
-const $f83208cc1173e373$var$add2DStroke = (baseClass)=>(0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)(baseClass));
-const $f83208cc1173e373$var$add2DFillStroke = (baseClass)=>(0, $063b9c440f4a940f$export$306219eb761ac4c2)((0, $f2731110a32ba8b7$export$1caa28391933d750)(baseClass));
 const $f83208cc1173e373$var$transformVertexFn = (el)=>(v)=>{
         const { x: x , y: y  } = el.local_to_canvas_position(v.x, v.y);
         return el.pInst.createVector(x, y);
@@ -3397,7 +3395,7 @@ const $f83208cc1173e373$export$761535d4bf6998ba = (baseClass)=>class extends bas
  * the downward direction, therefore angles are measured clockwise from the
  * positive x-direction ("3 o'clock").
  * @element arc
- */ class $f83208cc1173e373$var$Arc extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)((0, $f2731110a32ba8b7$export$5f4909ba2c08017a)($f83208cc1173e373$export$761535d4bf6998ba($f83208cc1173e373$var$add2DFillStroke($f83208cc1173e373$var$Transformed2DElement)))) {
+ */ class $f83208cc1173e373$var$Arc extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)((0, $f2731110a32ba8b7$export$5f4909ba2c08017a)($f83208cc1173e373$export$761535d4bf6998ba((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$Transformed2DElement)))))) {
     /**
    * @private
    */ static overloads = [
@@ -3430,7 +3428,7 @@ const $f83208cc1173e373$var$addEllipse2DCollisionProps = (baseClass)=>class exte
  * An ellipse with equal width and height is a circle. The origin may be
  * changed with the ellipseMode() function.
  * @element ellipse
- */ class $f83208cc1173e373$var$Ellipse extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)((0, $f2731110a32ba8b7$export$5f4909ba2c08017a)((0, $063b9c440f4a940f$export$306219eb761ac4c2)($f83208cc1173e373$var$addEllipse2DCollisionProps($f83208cc1173e373$var$Transformed2DElement)))) {
+ */ class $f83208cc1173e373$var$Ellipse extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)((0, $f2731110a32ba8b7$export$5f4909ba2c08017a)((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$addEllipse2DCollisionProps($f83208cc1173e373$var$Transformed2DElement)))))) {
     /**
    * @private
    */ static overloads = [
@@ -3469,7 +3467,7 @@ const $f83208cc1173e373$export$115022717b09ec84 = (baseClass)=>class extends bas
  * set of all points in a plane that are at a given distance from a given
  * point, the center.
  * @element circle
- */ class $f83208cc1173e373$var$Circle extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)($f83208cc1173e373$export$115022717b09ec84($f83208cc1173e373$var$add2DFillStroke($f83208cc1173e373$var$addCircle2DCollisionProps($f83208cc1173e373$var$Transformed2DElement)))) {
+ */ class $f83208cc1173e373$var$Circle extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)($f83208cc1173e373$export$115022717b09ec84((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$addCircle2DCollisionProps($f83208cc1173e373$var$Transformed2DElement)))))) {
     /**
    * @private
    */ static overloads = [
@@ -3501,7 +3499,7 @@ const $f83208cc1173e373$var$addLine2DCollisionProps = (baseClass)=>class extends
  * filled, therefore the fill_color property will not affect the color of a
  * line. So to color a line, use the stroke property.
  * @element line
- */ class $f83208cc1173e373$var$Line extends (0, $f2731110a32ba8b7$export$d38590504f301641)($f83208cc1173e373$var$add2DStroke($f83208cc1173e373$var$addLine2DCollisionProps($f83208cc1173e373$var$Transformed2DElement))) {
+ */ class $f83208cc1173e373$var$Line extends (0, $f2731110a32ba8b7$export$d38590504f301641)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$addLine2DCollisionProps($f83208cc1173e373$var$Transformed2DElement)))) {
     /**
    * @private
    */ static overloads = [
@@ -3532,7 +3530,7 @@ const $f83208cc1173e373$var$addPointCollisionProps = (baseClass)=>class extends 
  * color of the point is changed with the stroke property. The size of
  * the point can be changed with the stroke_weight property.
  * @element point
- */ class $f83208cc1173e373$var$Point extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)($f83208cc1173e373$var$add2DStroke($f83208cc1173e373$var$addPointCollisionProps($f83208cc1173e373$var$Transformed2DElement))) {
+ */ class $f83208cc1173e373$var$Point extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$addPointCollisionProps($f83208cc1173e373$var$Transformed2DElement)))) {
     /**
    * @private
    */ static overloads = [
@@ -3568,7 +3566,7 @@ const $f83208cc1173e373$var$addQuad2DCollisionProps = (baseClass)=>class extends
  * first vertex and the subsequent pairs should proceed clockwise or
  * counter-clockwise around the defined shape.
  * @element quad
- */ class $f83208cc1173e373$var$Quad extends (0, $f2731110a32ba8b7$export$d38590504f301641)((0, $f2731110a32ba8b7$export$3b9f5e1deb5b3f70)((0, $f2731110a32ba8b7$export$6945b0bfc23861d6)($f83208cc1173e373$var$add2DFillStroke($f83208cc1173e373$var$addQuad2DCollisionProps($f83208cc1173e373$var$Transformed2DElement))))) {
+ */ class $f83208cc1173e373$var$Quad extends (0, $f2731110a32ba8b7$export$d38590504f301641)((0, $f2731110a32ba8b7$export$3b9f5e1deb5b3f70)((0, $f2731110a32ba8b7$export$6945b0bfc23861d6)((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$addQuad2DCollisionProps($f83208cc1173e373$var$Transformed2DElement))))))) {
     /**
    * @private
    */ static overloads = [
@@ -3625,7 +3623,7 @@ const $f83208cc1173e373$var$addCornerRadius = (baseClass)=>class extends baseCla
  * the height. The way these properties are interpreted may be changed with
  * the rect_mode property.
  * @element rect
- */ class $f83208cc1173e373$var$Rect extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)((0, $f2731110a32ba8b7$export$5f4909ba2c08017a)((0, $f2731110a32ba8b7$export$7757a7d90505b04a)($f83208cc1173e373$var$addCornerRadius($f83208cc1173e373$var$add2DFillStroke($f83208cc1173e373$var$Transformed2DElement))))) {
+ */ class $f83208cc1173e373$var$Rect extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)((0, $f2731110a32ba8b7$export$5f4909ba2c08017a)((0, $f2731110a32ba8b7$export$7757a7d90505b04a)($f83208cc1173e373$var$addCornerRadius((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$Transformed2DElement))))))) {
     /**
    * @private
    */ static overloads = [
@@ -3677,7 +3675,7 @@ customElements.define("p-rect", $f83208cc1173e373$var$Rect);
  * the previously specified radius value in the attribute list.
  *
  * @element square
- */ class $f83208cc1173e373$var$Square extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)((0, $f2731110a32ba8b7$export$7757a7d90505b04a)($f83208cc1173e373$var$addCornerRadius($f83208cc1173e373$var$add2DFillStroke($f83208cc1173e373$var$Transformed2DElement)))) {
+ */ class $f83208cc1173e373$var$Square extends (0, $f2731110a32ba8b7$export$767c784c12981b7a)((0, $f2731110a32ba8b7$export$7757a7d90505b04a)($f83208cc1173e373$var$addCornerRadius((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$Transformed2DElement)))))) {
     #size = 100;
     /**
    * @private
@@ -3733,7 +3731,7 @@ customElements.define("p-square", $f83208cc1173e373$var$Square);
  * second point, and x3 and y3 specify the
  * third point.
  * @element triangle
- */ class $f83208cc1173e373$var$Triangle extends (0, $f2731110a32ba8b7$export$d38590504f301641)((0, $f2731110a32ba8b7$export$3b9f5e1deb5b3f70)($f83208cc1173e373$var$add2DFillStroke($f83208cc1173e373$var$Transformed2DElement))) {
+ */ class $f83208cc1173e373$var$Triangle extends (0, $f2731110a32ba8b7$export$d38590504f301641)((0, $f2731110a32ba8b7$export$3b9f5e1deb5b3f70)((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$Transformed2DElement))))) {
     /**
    * @private
    */ static overloads = [
@@ -3772,7 +3770,7 @@ customElements.define("p-triangle", $f83208cc1173e373$var$Triangle);
  * Bezier curves were developed by French automotive engineer Pierre Bezier,
  * and are commonly used in computer graphics to define gently sloping curves.
  * @element bezier
- */ class $f83208cc1173e373$var$Bezier extends (0, $f2731110a32ba8b7$export$d38590504f301641)((0, $f2731110a32ba8b7$export$3b9f5e1deb5b3f70)((0, $f2731110a32ba8b7$export$6945b0bfc23861d6)($f83208cc1173e373$var$add2DFillStroke((0, $c3262cadfa7b9b02$export$a4b143f4d85e7bf7)((0, $79ce0e365a23b6d5$export$66cca51e2e9c1a33)))))) {
+ */ class $f83208cc1173e373$var$Bezier extends (0, $f2731110a32ba8b7$export$d38590504f301641)((0, $f2731110a32ba8b7$export$3b9f5e1deb5b3f70)((0, $f2731110a32ba8b7$export$6945b0bfc23861d6)((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)((0, $c3262cadfa7b9b02$export$a4b143f4d85e7bf7)((0, $79ce0e365a23b6d5$export$66cca51e2e9c1a33)))))))) {
     /**
    * @private
    */ static overloads = [
@@ -3791,7 +3789,7 @@ customElements.define("p-bezier", $f83208cc1173e373$var$Bezier);
  * for the visual quality of the curve.
  * The ```<curve>``` element is an implementation of Catmull-Rom splines.
  * @element curve
- */ class $f83208cc1173e373$var$Curve extends (0, $f2731110a32ba8b7$export$d38590504f301641)((0, $f2731110a32ba8b7$export$3b9f5e1deb5b3f70)((0, $f2731110a32ba8b7$export$6945b0bfc23861d6)((0, $f2731110a32ba8b7$export$99f537b5fba70e67)($f83208cc1173e373$var$add2DFillStroke((0, $c3262cadfa7b9b02$export$f9e88d76da73025c)($f83208cc1173e373$var$Transformed2DElement)))))) {
+ */ class $f83208cc1173e373$var$Curve extends (0, $f2731110a32ba8b7$export$d38590504f301641)((0, $f2731110a32ba8b7$export$3b9f5e1deb5b3f70)((0, $f2731110a32ba8b7$export$6945b0bfc23861d6)((0, $f2731110a32ba8b7$export$99f537b5fba70e67)((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)((0, $c3262cadfa7b9b02$export$f9e88d76da73025c)($f83208cc1173e373$var$Transformed2DElement)))))))) {
     /**
    * @private
    */ static overloads = [
@@ -3844,7 +3842,7 @@ customElements.define("p-curve", $f83208cc1173e373$var$Curve);
  *  </shape>
  * </canvas>
  * ```
- */ class $f83208cc1173e373$var$Contour extends $f83208cc1173e373$var$add2DFillStroke((0, $79ce0e365a23b6d5$export$66cca51e2e9c1a33)) {
+ */ class $f83208cc1173e373$var$Contour extends (0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)((0, $79ce0e365a23b6d5$export$66cca51e2e9c1a33)))) {
     renderFunctionName = "beginContour";
     endRender() {
         this.pInst.endContour();
@@ -3941,7 +3939,7 @@ const $f83208cc1173e373$export$d11dd115fc87026 = (baseClass)=>class extends base
  * It is also not possible to use other shapes, such as
  * ```<ellipse>``` or ```<rect>``` as children of ```<shape>```.
  * @element shape
- */ class $f83208cc1173e373$var$Shape extends $f83208cc1173e373$export$d11dd115fc87026($f83208cc1173e373$var$add2DFillStroke($f83208cc1173e373$var$addShape2DCollisionProps($f83208cc1173e373$var$Transformed2DElement))) {
+ */ class $f83208cc1173e373$var$Shape extends $f83208cc1173e373$export$d11dd115fc87026((0, $063b9c440f4a940f$export$2a83b8e39b618423)((0, $063b9c440f4a940f$export$b2e29383819ac3c4)((0, $f2731110a32ba8b7$export$1caa28391933d750)($f83208cc1173e373$var$addShape2DCollisionProps($f83208cc1173e373$var$Transformed2DElement))))) {
 }
 customElements.define("p-shape", $f83208cc1173e373$var$Shape);
 /**

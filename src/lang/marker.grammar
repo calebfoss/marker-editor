@@ -49,11 +49,12 @@ LogicalExpression {
     Boolean { "true"|"false" }
     Not { "not" }
     Until { "until" }
+    String { ("'" (![\\] | "\\" (![\\] | "\\"))* "'") | ("&quot;" (![\\] | "\\" (![\\] | "\\"))* "&quot;") | ("\"" (![\\] | "\\" (![\\] | "\\"))* "\"")}
     Member { "."@asciiLetter$[a-zA-Z0-9_]* }
     Property { @asciiLetter$[a-zA-Z0-9_]* }
-    String { ";"(![;]|"\;")*";" }
     Space { $[ \t\n\r]+ }
-    @precedence {Until, Not, Boolean, ComparisonOperator, EqualityOperator, LogicalOperator, Property}
+    @precedence {Until, Not, Boolean, ComparisonOperator, 
+        EqualityOperator, LogicalOperator, String, Member, Property}
 }
 
 @skip { Space }
