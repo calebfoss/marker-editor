@@ -20,11 +20,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <component
-    :is="isCanvas ? 'canvas' : element.tag"
-    v-bind="isCanvas ? { is: element.tag } : null"
-    ref="elRef"
-  >
+  <component :is="element.tag" ref="elRef">
     {{ element.description }}
     <ElementPreview
       v-for="child in element.children"
