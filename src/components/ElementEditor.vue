@@ -3,7 +3,7 @@ import { computed, inject, ref } from 'vue'
 import AttributeAdder from './AttributeAdder.vue'
 import AttributeEditor from './AttributeEditor.vue'
 import ChildAdder from './ChildAdder.vue'
-import { primitives3d } from './Primitives3D'
+import { exclusively_3d_elements } from './Primitives3D'
 import ArrowButton from './ArrowButton.vue'
 
 const { element, refreshPreview, generateKey, inheritedAttributes, parentElement } = defineProps<{
@@ -114,7 +114,7 @@ const isCanvas = computed(() => isCanvas3D.value || element.tag === 'p-canvas')
 const convertTo3D = (parEl: MarkerElement | null, el: MarkerElement) => {
   const el3D = baseElements.find((docEl) => docEl.name === el.tag + '-3d')
   if (typeof el3D !== 'undefined') el.tag = el3D.name
-  else if (!primitives3d.includes(el.tag.slice(2))) {
+  else if (!exclusively_3d_elements.includes(el.tag.slice(2))) {
     parEl?.children.slice(parEl.children.indexOf(el), 1)
     return
   }
@@ -123,7 +123,7 @@ const convertTo3D = (parEl: MarkerElement | null, el: MarkerElement) => {
   }
 }
 const convertTo2D = (parEl: MarkerElement | null, el: MarkerElement) => {
-  if (primitives3d.includes(el.tag.slice(2))) {
+  if (exclusively_3d_elements.includes(el.tag.slice(2))) {
     parEl?.children.splice(parEl.children.indexOf(el), 1)
     return
   }

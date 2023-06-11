@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, inject, ref } from 'vue'
-import { primitives3d } from './Primitives3D'
+import { exclusively_3d_elements } from './Primitives3D'
 const { addChild, canvas } = defineProps<{
   addChild: (tag: string) => void
   canvas?: MarkerElement
@@ -33,7 +33,8 @@ const filteredOptions = computed(() =>
     if (typeof canvas === 'undefined') return true
     if (docElement.name.slice(2, 9) === `canvas`) return false
     const is3d =
-      docElement.name.slice(-2) === `3d` || primitives3d.includes(docElement.name.slice(2))
+      docElement.name.slice(-2) === `3d` ||
+      exclusively_3d_elements.includes(docElement.name.slice(2))
     if (canvas.tag.slice(-2) === '3d') return is3d
     return !is3d
   })

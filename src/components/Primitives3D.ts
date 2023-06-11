@@ -1,4 +1,4 @@
-export const primitives3d = [
+export const exclusively_3d_elements = [
   'plane',
   'box',
   'sphere',
@@ -6,5 +6,9 @@ export const primitives3d = [
   'cone',
   'ellipsoid',
   'torus',
-  'model'
+  'model',
+  'ambient-light',
+  'directional-light',
+  'point-light',
+  'spot-light'
 ]
