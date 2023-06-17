@@ -1,4 +1,4 @@
-// p5-marker v0.2.1 Sun Jun 11 2023 https://github.com/calebfoss/p5-marker.git
+// p5-marker v0.2.1 Mon Jun 12 2023 https://github.com/calebfoss/p5-marker.git
 const $7a53813bc2528edd$var$upperCaseChar = /([A-Z])/g;
 const $7a53813bc2528edd$var$upperCaseCharAfterFirst = /([^[A-Z]+)([A-Z])/g;
 //  js string replace 2nd param
@@ -5352,38 +5352,51 @@ customElements.define("p-curve-vertex-3d", $0cebf34523a0dd8b$var$CurveVertex3D);
 
 
 
+const $12bf7ff6c321610b$var$addLightColor = (baseClass)=>class extends baseClass {
+        #light_color;
+        /**
+     * The color of light produced by this element.
+     * @type {p5.Color}
+     */ get light_color() {
+            return this.#light_color;
+        }
+        set light_color(val) {
+            if (Array.isArray(val)) this.#light_color = this.pInst.color(...val);
+            else if (val instanceof p5.Color) this.#light_color = val;
+            else if (typeof val === "number" || typeof val === "string") this.#light_color = this.pInst.color(val);
+            else console.error(`On ${this.tagName}, light_color was set to ${typeof val}, ` + `but it can only be set to a color, string, or comma-separated list of numbers.`);
+        }
+        setup(pInst, canvas) {
+            super.setup(...arguments);
+            if (!this.hasAttribute("light_color")) this.light_color = pInst.color(255);
+        }
+    };
+const $12bf7ff6c321610b$var$addDirection = (baseClass)=>class extends baseClass {
+        #direction = new p5.Vector();
+        /**
+     * Direction the light is pointing.
+     * @type {p5.Vector}
+     */ get direction() {
+            return this.#direction;
+        }
+        set direction(val) {
+            if (val instanceof p5.Vector) this.#direction = val;
+            else if (Array.isArray(val)) this.#direction = this.vector(...val);
+            else if (typeof val === "number") this.#direction = this.vector(val);
+            else console.error(`On ${this.tagName}, directoin was set to ${typeof val}, ` + "but it can only be set to a vector or comma-separated list of numbers.");
+        }
+    };
 /**
  * Creates an ambient light with the given color.
  *
  * Ambient light does not come from a specific direction.
  * Objects are evenly lit from all sides. Ambient lights are
  * almost always used in combination with other types of lights.
- * @element ambient-light
- * @attribute {Number}   v1     red or hue value relative to the current color
- *                                range
- * @attribute {Number}   v2     green or saturation value relative to the
- *                                current color range
- * @attribute {Number}   v3     blue or brightness value relative to the current
- *                                color range
- * @attribute {Number}   alpha  alpha value relative to current color range
- *                                (default is 0-255)
- * @attribute {Number}   gray   number specifying value between
- *                                white and black
- * @attribute {String}   value  a color string
- * @attribute {Number[]} values an array containing the red,green,blue &
- *                                 and alpha components of the color
- * @attribute {p5.Color} color  color as a <a
- *                                 href="https://p5js.org/reference/#/p5.Color"
- *                                 target="_blank">p5.Color</a>
- */ class $12bf7ff6c321610b$var$AmbientLight extends (0, $813871a5b290df44$export$c1b6c06f00a3c53a) {
+ */ class $12bf7ff6c321610b$var$AmbientLight extends $12bf7ff6c321610b$var$addLightColor((0, $813871a5b290df44$export$c1b6c06f00a3c53a)) {
     /**
    * @private
    */ static overloads = [
-        "v1, v2, v3, [alpha]",
-        "gray, [alpha]",
-        "value",
-        "values",
-        "color", 
+        "light_color"
     ];
 }
 customElements.define("p-ambient-light", $12bf7ff6c321610b$var$AmbientLight);
@@ -5402,14 +5415,11 @@ customElements.define("p-ambient-light", $12bf7ff6c321610b$var$AmbientLight);
  * therefore cannot be positioned closer or farther away from a geometry.
  *
  * A maximum of **5** directional lights can be active at once.
- */ class $12bf7ff6c321610b$var$DirectionalLight extends (0, $813871a5b290df44$export$fe226f30800ca89d)((0, $813871a5b290df44$export$c1b6c06f00a3c53a)) {
+ */ class $12bf7ff6c321610b$var$DirectionalLight extends $12bf7ff6c321610b$var$addDirection($12bf7ff6c321610b$var$addLightColor((0, $813871a5b290df44$export$fe226f30800ca89d)((0, $813871a5b290df44$export$c1b6c06f00a3c53a)))) {
     /**
    * @private
    */ static overloads = [
-        "v1, v2, v3, x, y, z",
-        "v1, v2, v3, direction",
-        "color, x, y, z",
-        "color, direction", 
+        "light_color, direction"
     ];
 }
 customElements.define("p-directional-light", $12bf7ff6c321610b$var$DirectionalLight);
@@ -5422,14 +5432,11 @@ customElements.define("p-directional-light", $12bf7ff6c321610b$var$DirectionalLi
  * an object.
  *
  * A maximum of **5** point lights can be active at once.
- */ class $12bf7ff6c321610b$var$PointLight extends (0, $f2731110a32ba8b7$export$339b9be62e060004)((0, $063b9c440f4a940f$export$1c730bb33b0db09f)((0, $813871a5b290df44$export$ebd05637ed7f2471)((0, $813871a5b290df44$export$fe226f30800ca89d)((0, $813871a5b290df44$export$c1b6c06f00a3c53a))))) {
+ */ class $12bf7ff6c321610b$var$PointLight extends (0, $f2731110a32ba8b7$export$339b9be62e060004)($12bf7ff6c321610b$var$addLightColor((0, $063b9c440f4a940f$export$1c730bb33b0db09f)((0, $813871a5b290df44$export$ebd05637ed7f2471)((0, $813871a5b290df44$export$fe226f30800ca89d)((0, $813871a5b290df44$export$c1b6c06f00a3c53a)))))) {
     /**
    * @private
    */ static overloads = [
-        "v1, v2, v3, x, y, z",
-        "v1, v2, v3, position",
-        "color, x, y, z",
-        "color, position", 
+        "light_color, x, y, z"
     ];
 }
 customElements.define("p-point-light", $12bf7ff6c321610b$var$PointLight);
@@ -5466,19 +5473,34 @@ customElements.define("p-lights", $12bf7ff6c321610b$var$Lights);
  * The minimum concentration value is 1.
  *
  * A maximum of **5** spot lights can be active at once.
- */ class $12bf7ff6c321610b$var$SpotLight extends (0, $813871a5b290df44$export$ebd05637ed7f2471)((0, $813871a5b290df44$export$fe226f30800ca89d)((0, $813871a5b290df44$export$c1b6c06f00a3c53a))) {
+ */ class $12bf7ff6c321610b$var$SpotLight extends (0, $f2731110a32ba8b7$export$339b9be62e060004)($12bf7ff6c321610b$var$addDirection($12bf7ff6c321610b$var$addLightColor((0, $813871a5b290df44$export$ebd05637ed7f2471)((0, $813871a5b290df44$export$fe226f30800ca89d)((0, $813871a5b290df44$export$c1b6c06f00a3c53a)))))) {
+    #cone_angle = Math.PI / 3;
+    #concentration = 100;
     /**
    * @private
    */ static overloads = [
-        "v1, v2, v3, x, y, z, rx, ry, rz, [angle], [concentration]",
-        "color, position, direction, [angle], [concentration]",
-        "v1, v2, v3, position, direction, [angle], [concentration]",
-        "color, x, y, z, direction, [angle], [concentration]",
-        "color, position, rx, ry, rz, [angle], [concentration]",
-        "v1, v2, v3, x, y, z, direction, [angle], [concentration]",
-        "v1, v2, v3, position, rx, ry, rz, [angle], [concentration]",
-        "color, x, y, z, rx, ry, rz, [angle], [concentration]", 
+        "light_color, x, y, z, direction, [cone_angle], [concentration]", 
     ];
+    /**
+   * Angle of cone of light.
+   * @type {number}
+   */ get cone_angle() {
+        return this.#cone_angle;
+    }
+    set cone_angle(val) {
+        if (typeof val !== "number") console.error(`On ${this.tagName}, cone_angle was set to ${typeof val}, ` + "but it can only be set to a number");
+        else this.#cone_angle = val;
+    }
+    /**
+   * Concentration of cone of light
+   * @type {number}
+   */ get concentration() {
+        return this.#concentration;
+    }
+    set concentration(val) {
+        if (typeof val !== "number") console.error(`On ${this.tagName}, concentration was set to ${typeof val}, ` + "but it can only be set to a number");
+        else this.#concentration = val;
+    }
 }
 customElements.define("p-spot-light", $12bf7ff6c321610b$var$SpotLight);
 
@@ -5489,4 +5511,4 @@ dispatchEvent($cf838c15c8b009ba$var$customElementsDefined);
 
 
 //# sourceMappingURL=p5.marker.js.map
-   
+ 

@@ -27785,11 +27785,49 @@
                 "text": "array"
               },
               "static": true,
-              "default": "[\n    \"v1, v2, v3, [alpha]\",\n    \"gray, [alpha]\",\n    \"value\",\n    \"values\",\n    \"color\",\n  ]",
+              "default": "[\"light_color\"]",
               "privacy": "private",
               "description": "",
               "inheritedFrom": {
                 "name": "RenderedElement",
+                "module": "src/core.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#light_color",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addLightColor",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "light_color",
+              "description": "The color of light produced by this element.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addLightColor",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setup",
+              "parameters": [
+                {
+                  "name": "pInst"
+                },
+                {
+                  "name": "canvas"
+                }
+              ],
+              "description": "Sets this element up with a p5 instance and sets up its children.",
+              "inheritedFrom": {
+                "name": "P5Element",
                 "module": "src/core.js"
               }
             },
@@ -28234,26 +28272,6 @@
                 }
               ],
               "description": "Sets an attribute's value on this element.",
-              "inheritedFrom": {
-                "name": "P5Element",
-                "module": "src/core.js"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "setup",
-              "parameters": [
-                {
-                  "name": "pInst",
-                  "type": {
-                    "text": "p5"
-                  }
-                },
-                {
-                  "name": "canvas"
-                }
-              ],
-              "description": "Sets this element up with a p5 instance and sets up its children.",
               "inheritedFrom": {
                 "name": "P5Element",
                 "module": "src/core.js"
@@ -28715,69 +28733,17 @@
               }
             }
           ],
-          "attributes": [
+          "mixins": [
             {
-              "type": {
-                "text": "Number"
-              },
-              "description": "red or hue value relative to the current color range",
-              "name": "v1"
-            },
-            {
-              "type": {
-                "text": "Number"
-              },
-              "description": "green or saturation value relative to the current color range",
-              "name": "v2"
-            },
-            {
-              "type": {
-                "text": "Number"
-              },
-              "description": "blue or brightness value relative to the current color range",
-              "name": "v3"
-            },
-            {
-              "type": {
-                "text": "Number"
-              },
-              "description": "alpha value relative to current color range (default is 0-255)",
-              "name": "alpha"
-            },
-            {
-              "type": {
-                "text": "Number"
-              },
-              "description": "number specifying value between white and black",
-              "name": "gray"
-            },
-            {
-              "type": {
-                "text": "String"
-              },
-              "description": "a color string",
-              "name": "value"
-            },
-            {
-              "type": {
-                "text": "Number[]"
-              },
-              "description": "an array containing the red,green,blue & and alpha components of the color",
-              "name": "values"
-            },
-            {
-              "type": {
-                "text": "p5.Color"
-              },
-              "description": "color as a <a href=\"https://p5js.org/reference/#/p5.Color\" target=\"_blank\">p5.Color</a>",
-              "name": "color"
+              "name": "addLightColor",
+              "module": "src/elements/3d_light_elements.js"
             }
           ],
           "superclass": {
             "name": "WebGLLight",
             "module": "/src/properties/3d_props"
           },
-          "tagName": "ambient-light",
+          "tagName": "p-ambient-light",
           "customElement": true
         },
         {
@@ -28792,11 +28758,71 @@
                 "text": "array"
               },
               "static": true,
-              "default": "[\n    \"v1, v2, v3, x, y, z\",\n    \"v1, v2, v3, direction\",\n    \"color, x, y, z\",\n    \"color, direction\",\n  ]",
+              "default": "[\"light_color, direction\"]",
               "privacy": "private",
               "description": "",
               "inheritedFrom": {
                 "name": "RenderedElement",
+                "module": "src/core.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#direction",
+              "privacy": "private",
+              "default": "new p5.Vector()",
+              "inheritedFrom": {
+                "name": "addDirection",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "direction",
+              "description": "Direction the light is pointing.",
+              "type": {
+                "text": "p5.Vector"
+              },
+              "inheritedFrom": {
+                "name": "addDirection",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#light_color",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addLightColor",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "light_color",
+              "description": "The color of light produced by this element.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addLightColor",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setup",
+              "parameters": [
+                {
+                  "name": "pInst"
+                },
+                {
+                  "name": "canvas"
+                }
+              ],
+              "description": "Sets this element up with a p5 instance and sets up its children.",
+              "inheritedFrom": {
+                "name": "P5Element",
                 "module": "src/core.js"
               }
             },
@@ -29269,26 +29295,6 @@
             },
             {
               "kind": "method",
-              "name": "setup",
-              "parameters": [
-                {
-                  "name": "pInst",
-                  "type": {
-                    "text": "p5"
-                  }
-                },
-                {
-                  "name": "canvas"
-                }
-              ],
-              "description": "Sets this element up with a p5 instance and sets up its children.",
-              "inheritedFrom": {
-                "name": "P5Element",
-                "module": "src/core.js"
-              }
-            },
-            {
-              "kind": "method",
               "name": "#setupEvalFn",
               "parameters": [
                 {
@@ -29745,6 +29751,14 @@
           ],
           "mixins": [
             {
+              "name": "addDirection",
+              "module": "src/elements/3d_light_elements.js"
+            },
+            {
+              "name": "addLightColor",
+              "module": "src/elements/3d_light_elements.js"
+            },
+            {
               "name": "addSpecularColor",
               "module": "/src/properties/3d_props"
             }
@@ -29768,7 +29782,7 @@
                 "text": "array"
               },
               "static": true,
-              "default": "[\n    \"v1, v2, v3, x, y, z\",\n    \"v1, v2, v3, position\",\n    \"color, x, y, z\",\n    \"color, position\",\n  ]",
+              "default": "[\"light_color, x, y, z\"]",
               "privacy": "private",
               "description": "",
               "inheritedFrom": {
@@ -29849,6 +29863,44 @@
               "inheritedFrom": {
                 "name": "addZ",
                 "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#light_color",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addLightColor",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "light_color",
+              "description": "The color of light produced by this element.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addLightColor",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setup",
+              "parameters": [
+                {
+                  "name": "pInst"
+                },
+                {
+                  "name": "canvas"
+                }
+              ],
+              "description": "Sets this element up with a p5 instance and sets up its children.",
+              "inheritedFrom": {
+                "name": "P5Element",
+                "module": "src/core.js"
               }
             },
             {
@@ -30404,26 +30456,6 @@
             },
             {
               "kind": "method",
-              "name": "setup",
-              "parameters": [
-                {
-                  "name": "pInst",
-                  "type": {
-                    "text": "p5"
-                  }
-                },
-                {
-                  "name": "canvas"
-                }
-              ],
-              "description": "Sets this element up with a p5 instance and sets up its children.",
-              "inheritedFrom": {
-                "name": "P5Element",
-                "module": "src/core.js"
-              }
-            },
-            {
-              "kind": "method",
               "name": "#setupEvalFn",
               "parameters": [
                 {
@@ -30882,6 +30914,10 @@
             {
               "name": "addXYZ",
               "module": "/src/properties/shape_props"
+            },
+            {
+              "name": "addLightColor",
+              "module": "src/elements/3d_light_elements.js"
             },
             {
               "name": "addColorVals",
@@ -31886,16 +31922,181 @@
           "members": [
             {
               "kind": "field",
+              "name": "#cone_angle",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "#concentration",
+              "privacy": "private",
+              "type": {
+                "text": "number"
+              },
+              "default": "100"
+            },
+            {
+              "kind": "field",
               "name": "overloads",
               "type": {
                 "text": "array"
               },
               "static": true,
-              "default": "[\n    \"v1, v2, v3, x, y, z, rx, ry, rz, [angle], [concentration]\",\n    \"color, position, direction, [angle], [concentration]\",\n    \"v1, v2, v3, position, direction, [angle], [concentration]\",\n    \"color, x, y, z, direction, [angle], [concentration]\",\n    \"color, position, rx, ry, rz, [angle], [concentration]\",\n    \"v1, v2, v3, x, y, z, direction, [angle], [concentration]\",\n    \"v1, v2, v3, position, rx, ry, rz, [angle], [concentration]\",\n    \"color, x, y, z, rx, ry, rz, [angle], [concentration]\",\n  ]",
+              "default": "[\n    \"light_color, x, y, z, direction, [cone_angle], [concentration]\",\n  ]",
               "privacy": "private",
               "description": "",
               "inheritedFrom": {
                 "name": "RenderedElement",
+                "module": "src/core.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "cone_angle",
+              "description": "Angle of cone of light.",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "concentration",
+              "description": "Concentration of cone of light",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#x",
+              "privacy": "private",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "inheritedFrom": {
+                "name": "addXY",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#y",
+              "privacy": "private",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "inheritedFrom": {
+                "name": "addXY",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "x",
+              "description": "The x-coordinate of the element relative to the current anchor.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addXY",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "y",
+              "description": "The y-coordinate of the element relative to the current anchor.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addXY",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#z",
+              "privacy": "private",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "inheritedFrom": {
+                "name": "addZ",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "z",
+              "description": "The z-coordinate of the element relative to the current anchor.",
+              "type": {
+                "text": "number"
+              },
+              "inheritedFrom": {
+                "name": "addZ",
+                "module": "src/properties/shape_props.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#direction",
+              "privacy": "private",
+              "default": "new p5.Vector()",
+              "inheritedFrom": {
+                "name": "addDirection",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "direction",
+              "description": "Direction the light is pointing.",
+              "type": {
+                "text": "p5.Vector"
+              },
+              "inheritedFrom": {
+                "name": "addDirection",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#light_color",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addLightColor",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "light_color",
+              "description": "The color of light produced by this element.",
+              "type": {
+                "text": "p5.Color"
+              },
+              "inheritedFrom": {
+                "name": "addLightColor",
+                "module": "src/elements/3d_light_elements.js"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "setup",
+              "parameters": [
+                {
+                  "name": "pInst"
+                },
+                {
+                  "name": "canvas"
+                }
+              ],
+              "description": "Sets this element up with a p5 instance and sets up its children.",
+              "inheritedFrom": {
+                "name": "P5Element",
                 "module": "src/core.js"
               }
             },
@@ -32389,26 +32590,6 @@
             },
             {
               "kind": "method",
-              "name": "setup",
-              "parameters": [
-                {
-                  "name": "pInst",
-                  "type": {
-                    "text": "p5"
-                  }
-                },
-                {
-                  "name": "canvas"
-                }
-              ],
-              "description": "Sets this element up with a p5 instance and sets up its children.",
-              "inheritedFrom": {
-                "name": "P5Element",
-                "module": "src/core.js"
-              }
-            },
-            {
-              "kind": "method",
               "name": "#setupEvalFn",
               "parameters": [
                 {
@@ -32864,6 +33045,18 @@
             }
           ],
           "mixins": [
+            {
+              "name": "addXYZ",
+              "module": "/src/properties/shape_props"
+            },
+            {
+              "name": "addDirection",
+              "module": "src/elements/3d_light_elements.js"
+            },
+            {
+              "name": "addLightColor",
+              "module": "src/elements/3d_light_elements.js"
+            },
             {
               "name": "addLightFalloff",
               "module": "/src/properties/3d_props"
@@ -67796,8 +67989,7 @@
             }
           ],
           "superclass": {
-            "name": "HTMLLinkElement",
-            "module": "src/elements/beyond_canvas_elements.js"
+            "name": "HTMLElement"
           },
           "tagName": "p-sketch",
           "customElement": true
@@ -67908,10 +68100,23 @@
             },
             {
               "kind": "method",
+              "name": "create_element",
+              "parameters": [
+                {
+                  "name": "tagName"
+                }
+              ],
+              "inheritedFrom": {
+                "name": "addCanvasMethods",
+                "module": "src/elements/canvas_elements.js"
+              }
+            },
+            {
+              "kind": "method",
               "name": "runCode",
               "inheritedFrom": {
                 "name": "addCanvasMethods",
-                "module": "src/methods/canvas_methods.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -67928,7 +68133,16 @@
               "privacy": "private",
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#dom_element",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addCanvasProperties",
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -67940,7 +68154,19 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "canvas_element",
+              "description": "The canvas element rendering on the document.",
+              "type": {
+                "text": "HTMLCanvasElement"
+              },
+              "inheritedFrom": {
+                "name": "addCanvasProperties",
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -67952,7 +68178,7 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -67964,7 +68190,7 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -67981,6 +68207,14 @@
             },
             {
               "kind": "field",
+              "name": "marker_element",
+              "inheritedFrom": {
+                "name": "addCanvasProperties",
+                "module": "src/elements/canvas_elements.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "pixels",
               "description": "Array containing the values for all the pixels in the display window.\nThese values are numbers. This array is the size (include an appropriate\nfactor for pixel_density) of the display window x4,\nrepresenting the R, G, B, A values in order for each pixel, moving from\nleft to right across each row, then down each column. Retina and other\nhigh density displays may have more pixels (by a factor of\npixel_density^2).\nFor example, if the image is 100×100 pixels, there will be 40,000. With\npixel_density = 2, there will be 160,000. The first four values\n(indices 0-3) in the array will be the R, G, B, A values of the pixel at\n(0, 0). The second four values (indices 4-7) will contain the R, G, B, A\nvalues of the pixel at (1, 0).",
               "type": {
@@ -67988,7 +68222,7 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -67996,23 +68230,7 @@
               "name": "loop",
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#resize",
-              "parameters": [
-                {
-                  "name": "w"
-                },
-                {
-                  "name": "h"
-                }
-              ],
-              "inheritedFrom": {
-                "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -68024,7 +68242,7 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -69237,11 +69455,11 @@
           "mixins": [
             {
               "name": "addCanvasMethods",
-              "module": "/src/methods/canvas_methods"
+              "module": "src/elements/canvas_elements.js"
             },
             {
               "name": "addCanvasProperties",
-              "module": "/src/properties/canvas_props"
+              "module": "src/elements/canvas_elements.js"
             },
             {
               "name": "addP5PropsAndMethods",
@@ -69261,8 +69479,7 @@
             }
           ],
           "superclass": {
-            "name": "HTMLCanvasElement",
-            "module": "src/elements/canvas_elements.js"
+            "name": "HTMLElement"
           },
           "tagName": "p-canvas",
           "customElement": true
@@ -69370,10 +69587,23 @@
             },
             {
               "kind": "method",
+              "name": "create_element",
+              "parameters": [
+                {
+                  "name": "tagName"
+                }
+              ],
+              "inheritedFrom": {
+                "name": "addCanvasMethods",
+                "module": "src/elements/canvas_elements.js"
+              }
+            },
+            {
+              "kind": "method",
               "name": "runCode",
               "inheritedFrom": {
                 "name": "addCanvasMethods",
-                "module": "src/methods/canvas_methods.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -69390,7 +69620,16 @@
               "privacy": "private",
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "#dom_element",
+              "privacy": "private",
+              "inheritedFrom": {
+                "name": "addCanvasProperties",
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -69402,7 +69641,19 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "canvas_element",
+              "description": "The canvas element rendering on the document.",
+              "type": {
+                "text": "HTMLCanvasElement"
+              },
+              "inheritedFrom": {
+                "name": "addCanvasProperties",
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -69414,7 +69665,7 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -69426,7 +69677,7 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -69443,6 +69694,14 @@
             },
             {
               "kind": "field",
+              "name": "marker_element",
+              "inheritedFrom": {
+                "name": "addCanvasProperties",
+                "module": "src/elements/canvas_elements.js"
+              }
+            },
+            {
+              "kind": "field",
               "name": "pixels",
               "description": "Array containing the values for all the pixels in the display window.\nThese values are numbers. This array is the size (include an appropriate\nfactor for pixel_density) of the display window x4,\nrepresenting the R, G, B, A values in order for each pixel, moving from\nleft to right across each row, then down each column. Retina and other\nhigh density displays may have more pixels (by a factor of\npixel_density^2).\nFor example, if the image is 100×100 pixels, there will be 40,000. With\npixel_density = 2, there will be 160,000. The first four values\n(indices 0-3) in the array will be the R, G, B, A values of the pixel at\n(0, 0). The second four values (indices 4-7) will contain the R, G, B, A\nvalues of the pixel at (1, 0).",
               "type": {
@@ -69450,7 +69709,7 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -69458,23 +69717,7 @@
               "name": "loop",
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "#resize",
-              "parameters": [
-                {
-                  "name": "w"
-                },
-                {
-                  "name": "h"
-                }
-              ],
-              "inheritedFrom": {
-                "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -69486,7 +69729,7 @@
               },
               "inheritedFrom": {
                 "name": "addCanvasProperties",
-                "module": "src/properties/canvas_props.js"
+                "module": "src/elements/canvas_elements.js"
               }
             },
             {
@@ -70682,11 +70925,11 @@
           "mixins": [
             {
               "name": "addCanvasMethods",
-              "module": "/src/methods/canvas_methods"
+              "module": "src/elements/canvas_elements.js"
             },
             {
               "name": "addCanvasProperties",
-              "module": "/src/properties/canvas_props"
+              "module": "src/elements/canvas_elements.js"
             },
             {
               "name": "addP5PropsAndMethods",
@@ -70706,8 +70949,7 @@
             }
           ],
           "superclass": {
-            "name": "HTMLCanvasElement",
-            "module": "src/elements/canvas_elements.js"
+            "name": "HTMLElement"
           },
           "tagName": "p-canvas-3d",
           "customElement": true
@@ -77201,51 +77443,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/methods/canvas_methods.js",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addCanvasMethods",
-          "members": [
-            {
-              "kind": "method",
-              "name": "attributeInherited",
-              "parameters": [
-                {
-                  "name": "attributeName"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "runCode"
-            },
-            {
-              "kind": "method",
-              "name": "render"
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "addCanvasMethods",
-          "declaration": {
-            "name": "addCanvasMethods",
-            "module": "src/methods/canvas_methods.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/methods/collide_methods.js",
       "declarations": [
         {
@@ -78044,42 +78241,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/dom.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/environment.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/events.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/io.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/rendering.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/modules/structure.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -79301,99 +79462,6 @@
           "declaration": {
             "name": "add3DShapeStyling",
             "module": "src/properties/3d_props.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/properties/canvas_props.js",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "",
-          "name": "addCanvasProperties",
-          "members": [
-            {
-              "kind": "field",
-              "name": "#background",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "background",
-              "description": "The background property sets the color or image used\nfor the background of the p5.js canvas. The default background is transparent.\nA <a href=\"https://p5js.org/reference/#/p5.Color\">p5.Color</a> object can be provided to set the background color.\n\nA <a href=\"https://p5js.org/reference/#/p5.Image\">p5.Image</a> can also be provided to set the background image.\n\nThe arguments to <a href=\"https://p5js.org/reference/#/p5/color\">color()</a> can also be provided,\nseparated by commas.",
-              "type": {
-                "text": "p5.Color|p5.Image"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "cursor",
-              "description": "Sets the cursor when hovering over the canvas.\n\nYou can set cursor to any of the following constants:\nARROW, CROSS, HAND, MOVE, TEXT and WAIT\n\nYou may also set cursor to the URL of an image file. The recommended size\nis 16x16 or 32x32 pixels. (Allowed File extensions: .cur, .gif, .jpg, .jpeg, .png)\n\nFor more information on Native CSS cursors and url visit:\nhttps://developer.mozilla.org/en-US/docs/Web/CSS/cursor\n\nYou may also set cursor to \"type, x, y\", where type is one of the types above,\nx is the horizontal active spot of the cursor (must be less than 32)\nand\ny is the vertical active spot of the cursor (must be less than 32)",
-              "type": {
-                "text": "string"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "height",
-              "description": "The height of the canvas in pixels.",
-              "type": {
-                "text": "number"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "orderedAttributeNames"
-            },
-            {
-              "kind": "field",
-              "name": "pixels",
-              "description": "Array containing the values for all the pixels in the display window.\nThese values are numbers. This array is the size (include an appropriate\nfactor for pixel_density) of the display window x4,\nrepresenting the R, G, B, A values in order for each pixel, moving from\nleft to right across each row, then down each column. Retina and other\nhigh density displays may have more pixels (by a factor of\npixel_density^2).\nFor example, if the image is 100×100 pixels, there will be 40,000. With\npixel_density = 2, there will be 160,000. The first four values\n(indices 0-3) in the array will be the R, G, B, A values of the pixel at\n(0, 0). The second four values (indices 4-7) will contain the R, G, B, A\nvalues of the pixel at (1, 0).",
-              "type": {
-                "text": "number[]"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "loop"
-            },
-            {
-              "kind": "method",
-              "name": "#resize",
-              "parameters": [
-                {
-                  "name": "w"
-                },
-                {
-                  "name": "h"
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "width",
-              "description": "The width of the canvas in pixels.",
-              "type": {
-                "text": "number"
-              }
-            }
-          ],
-          "parameters": [
-            {
-              "name": "baseClass"
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "addCanvasProperties",
-          "declaration": {
-            "name": "addCanvasProperties",
-            "module": "src/properties/canvas_props.js"
           }
         }
       ]
@@ -82205,6 +82273,42 @@
           }
         }
       ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/dom.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/environment.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/events.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/io.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/rendering.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/modules/structure.js",
+      "declarations": [],
+      "exports": []
     }
   ]
 }

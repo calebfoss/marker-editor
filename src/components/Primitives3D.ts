@@ -10,5 +10,6 @@ export const exclusively_3d_elements = [
   'ambient-light',
   'directional-light',
   'point-light',
-  'spot-light'
+  'spot-light',
+  'lights'
 ]
